@@ -6,6 +6,7 @@
 
 * GPIO: [Pinout.xyz](https://pinout.xyz/)
 * SX: [Raspi Power Limitations](https://raspberrypi.stackexchange.com/a/51616/57569)
+* [GPIO Electrical Specifications](http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/raspberry-pi/gpio-pin-electrical-specifications) (Not necessarily for Raspi 3, but generally interesting)
 
 **Input** is 5±0.25 V, Raspi draws 8–9 W; with periphery (mouse, keyboard, other USB devices) up to 15 W.
 
