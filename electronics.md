@@ -1,6 +1,21 @@
 # Electronics
 
+## Good to know
+
+Connector numbering: 1, 2, 3 etc. start on the bottom left. The left side is marked, e.g. with a dot.
+([Thanks, js-boxdrawing](http://marklodato.github.io/js-boxdrawing/))
+
+     8 7 6 5
+    ┌┴─┴─┴─┴┐
+    │o      │
+    └┬─┬─┬─┬┘
+     1 2 3 4
+
 ## Terms
+
+* Forward Voltage V<sub>F</sub>
+
+  E.g. voltage drop over diodes, also in optocouplers. 
 
 * Input Clamp Current V<sub>IK</sub>, Output Clamp Current V<sub>OK</sub>
   
@@ -10,6 +25,20 @@
 ## Fuses
 
 * [ESKA: Technische Einführung](http://eska-fuses.de/fileadmin/pdf/content/Technische_Einfuehrung.pdf)
+
+## Wires
+
+Pin headers on PCBs are often connected with Dupont cables. I ended up crimping hundreds of them. This video
+gives a quite good understanding:
+[Custom Cables & Guide to Crimping Dupont PCB Interconnect Cables](https://www.youtube.com/watch?v=GkbOJSvhCgU).
+I am using pliers and no special crimping tools, which works just as well with a bit of practice.
+
+For crimping, the components can be found on ebay:
+
+* *(fe)male dupont crimp pin header*; usually come on a band where they have to be cut off with a side cutter,
+  convenient for storage.
+* *dupont pin housing 1P (2P, 3P, …)*; The pin housing work for both male and female pins, there is no difference.
+  1P denotes housings for a single pin, 2P for two pins, etc. I use 2P most often, then 1P, 4P, and 3P.
 
 ## Useful parts
 
