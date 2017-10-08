@@ -95,6 +95,8 @@ to shift 3.3 V from the Raspi (or from elsewhere) to a 5 V signal.
 Compared to optocouplers, the 74xx are much more efficient with I<sub>I</sub> = 1 µA as there is no need to power a LED,
 but V<sub>CC</sub> is only 4.5 to 5.5 V.
 
+Also, their response time is a lot shorter; around 40 ns compared to 20 µs for a PC817.
+
 More about the [74xx Series](https://www.mikrocontroller.net/articles/74xx) which contains many logic chips.
 74AHCT125 is popular as well for level shifting.
 
@@ -113,6 +115,31 @@ LEDs take 60 mA when all 3 colours are on, V<sub>DD</sub> = 5 V. Data (D<sub>IN<
 logic levels 0.3 V<sub>DD</sub> and 0.7 V<sub>DD</sub> and require 1 µA.
 WS2812B is the [improved version of the WS2812](https://acrobotic.com/datasheets/WS2812B_VS_WS2812.pdf).
 
+Since the signals sent on the data pin are around 400 ns, it is not possible to use optocopulers for shifting a 3.3 V
+signal to 5 V. They have a response time of several 1000 ns. A 74HCT08 can instead be used.
+
+The following image shows the same WS2812B signal directly from the Raspi and after an optocoupler:
+
+![PC817](Pictures/ws2812-data-after-raspi.png) 
+
+![PC817](Pictures/ws2812-data-after-pc817.png)
+
+To get it working on a Raspi directly, use [rpi-ws281x-native](https://www.npmjs.com/package/rpi-ws281x-native).
+Reliability is limited though as the WS2812 LEDs require very accurate timinig, which the Raspberry cannot really
+provide. 
+
+A better solution is to feed colour data from the Raspi to an Arduino. Arduino’ microcontroller then writes WS2812 data. 
+Use [node-pixel][pixel] and flash the Arduino (I use an Arduino Pro Mini) [with the Backpack firmware][pixel-backpack]; 
+it then listens on I²C on pins A4 and A5, which may have to be soldered first. 
+On the Raspi, connect to the Arduino with Johnny-Five and 
+[and raspi-io][pixel-raspi-io].
+
+
 ## Random links
 
 * [3V and 5V Tips/Tricks (pdf)](http://www.newark.com/pdfs/techarticles/microchip/3_3vto5vAnalogTipsnTricksBrchr.pdf)
+
+
+[pixel]: https://www.npmjs.com/package/node-pixel
+[pixel-backpack]: https://github.com/ajfisher/node-pixel/blob/master/docs/installation.md#i2c-backpack-installation
+[pixel-raspi-io]: https://github.com/ajfisher/node-pixel/issues/68#issuecomment-232822499
