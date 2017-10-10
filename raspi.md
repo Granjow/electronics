@@ -62,6 +62,8 @@ Read/write GPIOs. `gpio` works with the WiringPi GPIO numbers!
 
 ### I²C debugging
 
+See also: [Raspberry Pi: I2C-Konfiguration und -Programmierung](http://www.netzmafia.de/skripten/hardware/RasPi/RasPi_I2C.html)
+
 `i2cdetect` can list devices on the bus:
 
 ```
@@ -85,3 +87,90 @@ SMBus Receive Byte               yes
 
 To read/write values: `i2cget` and `i2cset`.
 
+
+## Audio
+
+For higher quality audio, use the [HiFiBerry](https://www.hifiberry.com/).
+
+Play sound at non-max
+
+    omxplayer --vol -5000 file.mp3
+
+
+## HDMI
+
+Enable at boot time: [hdmi_force_hotplug=1](http://raspberrypi.stackexchange.com/questions/2169/how-do-i-force-the-raspberry-pi-to-turn-on-hdmi)
+
+    hdmi_force_hotplug=1 # Use HDMI mode even if no monitor is connected on startup
+    hdmi_drive=2         # Use normal HDMI mode with sound 
+
+Enable HDMI from terminal: [Enable and disable the HDMI port on the Raspberry Pi](https://gist.github.com/AGWA/9874925).
+This is useful e.g. if the resolution on a screen does not fit when plugging it after startup.
+
+    tvservice -s # Status
+    tvservice -o # Off
+    tvservice -p # On with preferred settings
+    sudo fgconsole # Get current virtual terminal number
+    sudo chvt 7 # Set virtual terminal to 7
+
+## UI and Kiosk mode
+
+For Kiosk mode, see [Raspberry Pi Kiosk Screen Tutorial][kioskmode]
+
+Start Chromium in full-screen mode without dialogs and toolbars.
+
+    chromium-browser --start-maximized --kiosk --noerrdialogs --incognito --app=URL
+
+Disable cursor except when moving it
+
+    sudo apt-get install unclutter
+
+Desktop wallpaper and no trash icon: Edit the file `.config/pcmanfm/LXDE-pi/desktop-items-0.conf`
+
+    wallpaper=/home/pi/x.jpg
+    show_trash=0
+
+Restart X
+
+    sudo /etc/init.d/lightdm stop
+    sudo /etc/init.d/lightdm start
+    # OR
+    sudo systemctl [stop|start|restart] lightdm
+
+[kioskmode]: https://www.danpurdy.co.uk/wp-content/cache/page_enhanced/www.danpurdy.co.uk/web-development/raspberry-pi-kiosk-screen-tutorial/_index.html
+
+## Performance
+
+Get current temperature
+
+    vcgencmd measure_temp
+
+Run CPU benchmark
+
+    sysbench --test-cpu --num-threads 4 --cpu-max-prime 30000 run
+
+### MicroSD performance
+
+The MicroSD card speed can be improved especially on some slow cards by [overclocking the SD reader][overclock].
+
+Current measurements (`dd`: bs=4096. `OC`: Overclocked. `X`: Desktop loaded. `www`: Auto-started Chromium is ready.) 
+
+```
+dd raspbian   1st run   init 6   i6 after setup      OC        Card
+
+24.5 MB/s¹    68 s      37 s     25 s X, 34 s www    -         SanDisk Ultra 32 GB MicroSDHC I
+28.6 MB/s¹    51 s      21 s     20 s X, 25 s www    -         Samsung Evo 32 GB MicroSDHC I
+37.5 MB/s¹    57 s      28 s     27 s X, 35 s www    -         Lexar 1000x 32 GB MicroSDHC II
+32.1 MB/s¹    40 s      18 s     18 s X, 27 s www    -         Samsung Evo+ 32 GB MicroSDHC I
+48.5 MB/s¹    38 s      19 s     22 s X, 26 s www    -         Samsung Pro 16 GB  MicroSDHC I
+39.1 MB/s²    93 s      33 s     56 s X, 71 s www    37s 45s   Kingston UHS-I 16 GB MicroSDHC U3
+14.6 MB/s²    38 s      21 s     23 s X, 33 s www    21s 27s   SanDisk Ultra 16 GB MicroSDHC A1
+19.6 MB/s²    44 s      24 s     24 s X, 35 s www    25s 31s   Samsung Evo+ 32 GB MicroSDHC I
+
+¹ Raspbian 2016-x
+  Written in a Lexar card reader, which I suspect to break MicroSD cards, but writes much faster.
+² Raspbian 2017-09-07 (4.6 GB)
+  Written through normal SD adapter
+```
+
+[overclock]: http://www.jeffgeerling.com/blog/2016/how-overclock-microsd-card-reader-on-raspberry-pi-3

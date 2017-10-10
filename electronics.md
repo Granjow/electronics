@@ -135,11 +135,17 @@ On the Raspi, connect to the Arduino with Johnny-Five and
 [and raspi-io][pixel-raspi-io].
 
 
-## Random links
-
-* [3V and 5V Tips/Tricks (pdf)](http://www.newark.com/pdfs/techarticles/microchip/3_3vto5vAnalogTipsnTricksBrchr.pdf)
-
-
 [pixel]: https://www.npmjs.com/package/node-pixel
 [pixel-backpack]: https://github.com/ajfisher/node-pixel/blob/master/docs/installation.md#i2c-backpack-installation
 [pixel-raspi-io]: https://github.com/ajfisher/node-pixel/issues/68#issuecomment-232822499
+
+
+## EL Wire
+
+* [How to solder or repair EL wire](http://elwirecraft.co.uk/el-how-to-and-tips/how-to-solder-or-repair-el-wire/)
+* [The Full "How To" Manual for EL (Electroluminescent) Wire](http://www.instructables.com/id/The-Full-How-Too-Manual-For-EL-Electroluminesce/) (See comment by MTJimL)
+
+
+## Random links
+
+* [3V and 5V Tips/Tricks (pdf)](http://www.newark.com/pdfs/techarticles/microchip/3_3vto5vAnalogTipsnTricksBrchr.pdf)
