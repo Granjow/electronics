@@ -96,22 +96,40 @@ Play sound at non-max
 
     omxplayer --vol -5000 file.mp3
 
+Speech synthesis output; use omxplayer for better quality. See [RPi Text to Speech](https://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis))
 
-## HDMI
+    echo "Hey there" | espeak -ven+f3 -k5 -s150 --stdin -w /tmp/test.wav; omxplayer /tmp/test.wav
+
+## Display
 
 Enable at boot time: [hdmi_force_hotplug=1](http://raspberrypi.stackexchange.com/questions/2169/how-do-i-force-the-raspberry-pi-to-turn-on-hdmi)
 
     hdmi_force_hotplug=1 # Use HDMI mode even if no monitor is connected on startup
-    hdmi_drive=2         # Use normal HDMI mode with sound 
+    hdmi_drive=2         # Use normal HDMI mode with sound
 
 Enable HDMI from terminal: [Enable and disable the HDMI port on the Raspberry Pi](https://gist.github.com/AGWA/9874925).
 This is useful e.g. if the resolution on a screen does not fit when plugging it after startup.
+Also works via SSH.
 
     tvservice -s # Status
     tvservice -o # Off
     tvservice -p # On with preferred settings
     sudo fgconsole # Get current virtual terminal number
-    sudo chvt 7 # Set virtual terminal to 7
+    sudo chvt 1 # Switch to tty1 first, otherwise screen often stays black.
+    sudo chvt 7 # Set virtual terminal to 7 (like Shift+Ctrl+F7)
+
+Just turn display on and off
+
+    vcgencmd display_power 0
+    vcgencmd display_power 1
+
+To get available modes:
+
+    tvservice -m DMT
+
+Also interesting
+
+    fbset -i
 
 ## UI and Kiosk mode
 
@@ -141,7 +159,7 @@ Restart X
 
 ## Performance
 
-Get current temperature
+Get current temperature ([more on vcgencmd](https://www.elinux.org/RPI_vcgencmd_usage))
 
     vcgencmd measure_temp
 
@@ -152,6 +170,7 @@ Run CPU benchmark
 ### MicroSD performance
 
 The MicroSD card speed can be improved especially on some slow cards by [overclocking the SD reader][overclock].
+Unfortunately, this seems to break wlan.
 
 Current measurements (`dd`: bs=4096. `OC`: Overclocked. `X`: Desktop loaded. `www`: Auto-started Chromium is ready.) 
 
@@ -174,3 +193,43 @@ dd raspbian   1st run   init 6   i6 after setup      OC        Card
 ```
 
 [overclock]: http://www.jeffgeerling.com/blog/2016/how-overclock-microsd-card-reader-on-raspberry-pi-3
+
+
+## Network
+
+List blocked devices (WLAN/Bluetooth)
+
+    rfkill list
+
+Prefer WLAN over Ethernet: Add metric to `/etc/dhcpcd.conf`. 300 is default, higher number = less important.
+See `man 5 interfaces`.
+
+    interface eth0
+    [...]
+    metric 304
+
+Connect to WLAN (same effect as via task bar) in `/etc/wpa_supplicant/wpa_supplicant.conf`: Add
+
+    network={
+        ssid="NETWORK_SSID"
+        psk="NETWORK_PASSWORD"
+        key_mgmt=WPA-PSK
+    }
+
+Enable SSH
+
+    systemctl enable ssh
+    systemctl start ssh
+
+## Boot Overlays
+
+Boot overlays e.g. allow to enable I²C, disable audio, etc.
+Documentation, including default values, can be found in `/boot/overlays/README`.
+
+
+## Build your own Raspbian
+
+Use [pi-gen](https://github.com/RPi-Distro/pi-gen) and customise the stages. Drop stages 4 and 5 if Python
+and Mathematica are not required; results in a < 500 MB large ISO (takes 40 minutes on a laptop with 10 Mb/s download).
+
+The builder runs on a docker image, so all required tools are installed in a separate environment.
