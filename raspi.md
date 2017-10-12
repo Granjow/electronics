@@ -2,11 +2,30 @@
 
 [Chip](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2837/README.md): BCM3827, Quad-Core ARMv8
 
-## GPIO and Electrical Specifications
+## GPIOs
 
-* GPIO: [Pinout.xyz](https://pinout.xyz/)
+* GPIO: [Pinout.xyz](https://pinout.xyz/) provides a nice map of pins
 * SX: [Raspi Power Limitations](https://raspberrypi.stackexchange.com/a/51616/57569)
-* [GPIO Electrical Specifications](http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/raspberry-pi/gpio-pin-electrical-specifications) (Not necessarily for Raspi 3, but generally interesting)
+* [GPIO Electrical Specifications][gpio-specs] (Not necessarily for Raspi 3, but generally interesting)
+
+The Raspi has 40 GPIO pins. **24 pins** can actually be used for GPIOing.
+
+```
+5533GGGGGGGGiiee00OOOOOOOOOOOOOOOOOOOOOO
+│ │ └GND (8)│ │ └IOs (24)
+│ └──3.3V   │ └──EEPROM reserved  
+└────5V     └────I²C with Pull-Up
+```
+
+Of the other 16 pins, there are
+
+* 2× 5 V pins
+* 2× 3.3 V pins
+* 8× GND pins
+* 2× I²C pins with pullup (Physical pins 3, 5)
+* 2× Reserved I²C EEPROM pins (Physical pins 27, 28)
+
+### Electrical Specifications
 
 **Input** is 5±0.25 V, Raspi draws 8–9 W; with periphery (mouse, keyboard, other USB devices) up to 15 W.
 
@@ -87,6 +106,7 @@ SMBus Receive Byte               yes
 
 To read/write values: `i2cget` and `i2cset`.
 
+[gpio-specs]: (http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/raspberry-pi/gpio-pin-electrical-specifications)
 
 ## Audio
 

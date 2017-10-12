@@ -19,7 +19,7 @@ Connector numbering: 1, 2, 3 etc. start on the bottom left. The left side is mar
 
 * Input Clamp Current V<sub>IK</sub>, Output Clamp Current V<sub>OK</sub>
   
-  Current which will destroy the IC. Can be caused by too high input voltage.
+  Current which will destroy the IC if the input voltage is out of range.
   See [StackExchange](https://electronics.stackexchange.com/questions/107687/input-and-output-clamping-current-of-the-ic-4082)
 
 ## Fuses
@@ -88,7 +88,6 @@ Comparator; compares two voltages and sets the output low or high, depending on 
 **CD4017B** — Decade counter, 10 inputs
 
 **74HCT08** —
-[(pdf)](Datasheets/74HCT08.pdf)
 3 V to 5 V level shifter. Actually only an AND, but with V<sub>DD</sub> = 5 V and V<sub>IH</sub> = 2 V it can be used
 to shift 3.3 V from the Raspi (or from elsewhere) to a 5 V signal.
 
@@ -97,8 +96,10 @@ but V<sub>CC</sub> is only 4.5 to 5.5 V.
 
 Also, their response time is a lot shorter; around 40 ns compared to 20 µs for a PC817.
 
-More about the [74xx Series](https://www.mikrocontroller.net/articles/74xx) which contains many logic chips.
-74AHCT125 is popular as well for level shifting.
+[The 74xx Series](https://www.mikrocontroller.net/articles/74xx) contains many logic chips. Some data sheets:
+* [SN74HCT00 (pdf)](Datasheets/sn74hct00-short.pdf) is a 2-input NAND (25 ns max.; 9 ns max. for AHCT version)
+* [SN74HCT08 (pdf)](Datasheets/sn74hct08-short.pdf) is a 2-input AND (30 ns max.; 9 ns max. for AHCT version)
+* [SN74AHC125 (pdf)](Datasheets/sn74ahct125-short.pdf) is a fast 3-state buffer (10 ns max.)
 
 ## Voltage Regulators
 
@@ -118,21 +119,24 @@ WS2812B is the [improved version of the WS2812](https://acrobotic.com/datasheets
 Since the signals sent on the data pin are around 400 ns, it is not possible to use optocopulers for shifting a 3.3 V
 signal to 5 V. They have a response time of several 1000 ns. A 74HCT08 can instead be used.
 
-The following image shows the same WS2812B signal directly from the Raspi and after an optocoupler:
-
-![PC817](Pictures/ws2812-data-after-raspi.png) 
+The following image shows the same WS2812B signal directly from the Raspi (blue) and after an optocoupler (red).
+Quite obviously, it is not quite the same curve. The PC817 is too slow to reproduce the signal
 
 ![PC817](Pictures/ws2812-data-after-pc817.png)
 
-To get it working on a Raspi directly, use [rpi-ws281x-native](https://www.npmjs.com/package/rpi-ws281x-native).
-Reliability is limited though as the WS2812 LEDs require very accurate timinig, which the Raspberry cannot really
-provide. 
+After the faster SN74HCT08, the signal is reproduced almost identically, but at a level of 5 V.
 
-A better solution is to feed colour data from the Raspi to an Arduino. Arduino’ microcontroller then writes WS2812 data. 
-Use [node-pixel][pixel] and flash the Arduino (I use an Arduino Pro Mini) [with the Backpack firmware][pixel-backpack]; 
+![SN74008](Pictures/ws2812-data-after-sn74hct08n.png)
+
+To get it working on a Raspi directly, use [rpi-ws281x-native](https://www.npmjs.com/package/rpi-ws281x-native).
+Level shifting to 5 V is required, otherwise artifacts (wrong pixels) will occur. 
+This method is very fast and writes about 24000 LEDs per second on a 60 LED strip (400 fps).
+
+Another solution is to feed colour data from the Raspi to an Arduino. Arduino’s microcontroller then sends data to  WS2812. 
+Use [node-pixel][pixel] and flash the Arduino (I use an Arduino Pro Mini) [with the Backpack firmware][pixel-backpack];
 it then listens on I²C on pins A4 and A5, which may have to be soldered first. 
-On the Raspi, connect to the Arduino with Johnny-Five and 
-[and raspi-io][pixel-raspi-io].
+On the Raspi, connect to the Arduino with Johnny-Five [and raspi-io][pixel-raspi-io].
+This method is slower with around 740 LEDs per second, which is 12 fps for 60 LEDs.
 
 
 [pixel]: https://www.npmjs.com/package/node-pixel
