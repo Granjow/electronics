@@ -42,8 +42,28 @@ For crimping, the components can be found on ebay:
 
 ## Useful parts
 
-**1N4001** up to **1N4007** — 
+### Transistors
+
+**2N4401**
+[(pdf)](Datasheets/2N4401-D.PDF)
+
+**BC337**
+[(pdf)](Datasheets/bc337.pdf)
+
+**BC547**
+[(pdf)](Datasheets/BC547-short.pdf)
+
+**BC635**
+[(pdf)](Datasheets/bc635.pdf)
+
+**2N2907** *PNP*
+[(pdf)](Datasheets/2N2907A-D.PDF)
+
+### Diodes
+
+**1N4001** up to **1N4007** 
 [(pdf)](Datasheets/1n4001.pdf)
+— 
 Rectifier diode, 50 to 1000 V, 1 W.
 Forward voltage (voltage drop) is V<sub>F</sub> = 1.1 V.
 
