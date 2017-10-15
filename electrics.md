@@ -2,6 +2,21 @@
 
 *when more power needed*
 
+## Plugs
+
+[In Switzerland/EU](https://de.wikipedia.org/wiki/Niederspannungsnetz#Farbgebung)
+
+```
+N       L
+o       o
+    o
+   PE
+```
+
+* **N** *(blue)* Neutralleiter
+* **L** *(brown)* Aussenleiter, Phase
+* **PE** (yellow/green)* Schutzleiter, Protective Earth 
+
 ## Wires
 
 Rough numbers

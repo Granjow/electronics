@@ -69,6 +69,11 @@ Forward voltage (voltage drop) is V<sub>F</sub> = 1.1 V.
 
 ## Useful ICs
 
+### I²C
+
+is a common protocol for sending data over two wires (common ground is required too).
+It is supported by many devices like ICs, Raspberry, Arduinos, etc.
+
 **PCF8574P** and **PCF8574AP** —
 [(pdf)](Datasheets/PCF8574.pdf)
 I²C based port expander. Connect SDA (data) and SCL (clock) 
@@ -84,7 +89,9 @@ I²C based port expander. More features, but did not work for me, communication 
 (Very small chance that I used the wrong data sheet.)
 
 **MCP23017** —
-[Why use MCP23008 / MCP23016 / MCP23017 expanders](http://peter224722.blogspot.ch/2014/03/why-use-mcp23008-mcp23016-mcp23017.html)
+[Tutorial: Why use MCP23008 / MCP23016 / MCP23017 expanders](http://peter224722.blogspot.ch/2014/03/why-use-mcp23008-mcp23016-mcp23017.html)
+
+### Optocouplers
 
 **PC817** —
 [(pdf)](Datasheets/PC817C.pdf)
@@ -99,13 +106,19 @@ Optocoupler, 6 legs. Easily available.
 
 **ILD2**, **ILQ2**, **617** — More optocouplers
 
+### Comparators
+
 **LM393** —
 [(pdf)](Datasheets/lm393-n.pdf)
 Comparator; compares two voltages and sets the output low or high, depending on which input was higher.
 
+### Counters
+
 **NE555** — Decade counter.
 
 **CD4017B** — Decade counter, 10 inputs
+
+### Logic operators
 
 **74HCT08** —
 3 V to 5 V level shifter. Actually only an AND, but with V<sub>DD</sub> = 5 V and V<sub>IH</sub> = 2 V it can be used
@@ -124,10 +137,35 @@ Also, their response time is a lot shorter; around 40 ns compared to 20 µs for 
 ## Voltage Regulators
 
 **LM3940** —
-[(pdf)](Datasheets/lm3940.pdf) Converts 5 V to 3.3 V. Basically by means of converting the rest to heat.
+[(pdf)](Datasheets/lm3940.pdf) Converts 5 V to 3.3 V. Basically by means of converting electrical to thermal energy.
 3.3 V, 1 A; U<sub>in</sub> 4.5 to 5.5 V.
 
 ## Toys
+
+### Dot-Matrix LCD displays
+
+LCD Displays with pixels, also available with backlight. 
+
+**HD44780** 
+controls dot matrix LCD displays. It requires 6 IOs.
+
+### 7-Segment LCD/LED displays
+
+    ╷╷ ╶┐
+    └┤ ┌┘
+     ╵ └╴
+Typically, each segment of those displays is enabled with a separate input. One element therefore requires 8 pins
+(7 segments + GND or V<sub>CC</sub>).
+
+Displays with more (e.g. 4) elements reduce the number of pins by adding *element enable pins.* Only one element
+is active simultaneously, but when switching the active element fast enough, it appears to the eye as if all elements
+were active. 7-segment displays [can easily be controlled by a Raspberry][7-segment-pi].
+
+**MAX7219**
+controls 8 elements and uses 2 inputs, clock and data.
+
+
+### LEDs
 
 **WS2812B** —
 [(pdf)](Datasheets/28085-WS2812B-RGB-LED-Datasheet.pdf)
@@ -159,6 +197,7 @@ On the Raspi, connect to the Arduino with Johnny-Five [and raspi-io][pixel-raspi
 This method is slower with around 740 LEDs per second, which is 12 fps for 60 LEDs.
 
 
+[7-segment-pi]: http://raspi.tv/2015/how-to-drive-a-7-segment-display-directly-on-raspberry-pi-in-python
 [pixel]: https://www.npmjs.com/package/node-pixel
 [pixel-backpack]: https://github.com/ajfisher/node-pixel/blob/master/docs/installation.md#i2c-backpack-installation
 [pixel-raspi-io]: https://github.com/ajfisher/node-pixel/issues/68#issuecomment-232822499
