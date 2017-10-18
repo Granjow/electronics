@@ -4,3 +4,4 @@ My notes about electronics.
 * [Raspberry 3](raspi.md)
 * [Arduino](arduino.md)
 * [Electrics](electrics.md)
+* [Soldering](soldering.md)

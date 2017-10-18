@@ -2,7 +2,8 @@
 
 ## Good to know
 
-Connector numbering: 1, 2, 3 etc. start on the bottom left. The left side is marked, e.g. with a dot.
+Connector numbering: 1, 2, 3 etc. start on the bottom left, counter-clock wise. 
+The left side is marked, e.g. with a dot.
 ([Thanks, js-boxdrawing](http://marklodato.github.io/js-boxdrawing/))
 
      8 7 6 5
@@ -10,6 +11,10 @@ Connector numbering: 1, 2, 3 etc. start on the bottom left. The left side is mar
     │o      │
     └┬─┬─┬─┬┘
      1 2 3 4
+
+**DIP** (dual in-line package): ICs with pins for 2.54 mm breadboards. DIP-4 has 4 pins, etc.
+
+**SOP**, SOIC, (T)SO… (small outline …): ICs for surface mounting (SMD) 
 
 ## Terms
 
@@ -40,24 +45,99 @@ For crimping, the components can be found on ebay:
 * *dupont pin housing 1P (2P, 3P, …)*; The pin housing work for both male and female pins, there is no difference.
   1P denotes housings for a single pin, 2P for two pins, etc. I use 2P most often, then 1P, 4P, and 3P.
 
+The typical black connectors are produced by [Molex][molex-catalogue] and others.
+
+[molex-catalogue]: http://www.molex.com/catalog/web_catalog/pdfs/C.pdf
+
+
+## Breadboard prototyping
+
+Some nice breadboard hacks are listed in [My Top Ten Most Useful Breadboard Tips and Tricks][breadboard-tips].
+
+[breadboard-tips]: http://www.instructables.com/id/My-Top-Ten-Most-Useful-Breadboard-Tips-and-Tricks/
+
+
+## Driving higher loads
+
+To control higher voltages or currents with e.g. a Raspberry 3.3 V 20 mA output, there are different options.
+
+Same voltage:
+
+* Transistor
+* MOSFET
+
+Different voltage:
+
+* Optocoupler
+* Mechanical relay
+* Solid-state relay ([Photo MOSFET](https://www.renesas.com/en-in/products/optoelectronics/technology/difference.html))
+
+The optocoupler output can again be amplified with transistors as they usually have a current of I<sub>C</sub> = 20 mA. 
+See [Driving High-Level Loads With Optocouplers][vishay-loads].
+
+[vishay-loads]: http://www.soloelectronica.net/PDF/optoacopladores/vishay_driving_high-level_loads_with_optocouplers_83704.pdf
+
 ## Useful parts
 
 ### Transistors
 
 **2N4401**
 [(pdf)](Datasheets/2N4401-D.PDF)
+—
+I<sub>C</sub> = 600 mA
 
 **BC337**
 [(pdf)](Datasheets/bc337.pdf)
+—
+I<sub>C</sub> = 800 mA
 
 **BC547**
 [(pdf)](Datasheets/BC547-short.pdf)
+—
+I<sub>C</sub> = 100 mA
 
 **BC635**
 [(pdf)](Datasheets/bc635.pdf)
+—
+I<sub>C</sub> = 1 A
 
 **2N2907** *PNP*
 [(pdf)](Datasheets/2N2907A-D.PDF)
+—
+I<sub>C</sub> = −600 mA
+
+
+### MOSFETs
+
+MOSFETs can drive ridiculously high currents. They are also sensitive to electrostatical discharge and 
+it is not too hard to break a MOSFET when not handled carefully; transistors are much more robust in this regard.
+
+Some examples (which are all incompatible with normal PCBs because the legs are too large):
+
+**IRL3103**
+[(pdf)](http://www.irf.com/product-info/datasheets/data/irl3103.pdf)
+—
+V<sub>DSS</sub> 30 V, R<sub>DS(on)</sub> 12 mΩ, I<sub>D</sub> 64 A
+
+**IRL3803**
+[(pdf)](http://www.irf.com/product-info/datasheets/data/irl3803.pdf)
+—
+V<sub>DSS</sub> 30 V, R<sub>DS(on)</sub> 6 mΩ, I<sub>D</sub> 140 A
+
+**IRF5305**
+[(pdf)](http://www.irf.com/product-info/datasheets/data/irf5305s.pdf)
+—
+V<sub>DSS</sub> −55 V, R<sub>DS(on)</sub> 6 mΩ, I<sub>D</sub> −31 A
+
+**IRF4905**
+[(pdf)](http://www.irf.com/product-info/datasheets/data/irf4905s.pdf)
+—
+V<sub>DSS</sub> −55 V, R<sub>DS(on)</sub> 20 mΩ, I<sub>D</sub> −74 A
+
+**IRFU9024**
+[(pdf)](http://www.vishay.com/docs/91278/sihfr902.pdf)
+—
+V<sub>DSS</sub> −60 V, R<sub>DS(on)</sub> 280 mΩ, I<sub>D</sub> −8.8 A
 
 ### Diodes
 
@@ -79,7 +159,7 @@ It is supported by many devices like ICs, Raspberry, Arduinos, etc.
 I²C based port expander. Connect SDA (data) and SCL (clock) 
 to the Raspi I2C pins (5 and 7) for 8 additional digital IOs. 
 
-Both ICs have 3 address bits, so 8 of them can be used. The P and AP differ only in their 
+Both ICs have 3 address bits/pins, so 8 of them can be used. The P and AP differ only in their 
 slave address, so when used together, 16 of them can be attached (resulting in 128 IOs).
 
 **MCP23008** and **MCP23016** —
@@ -93,18 +173,28 @@ I²C based port expander. More features, but did not work for me, communication 
 
 ### Optocouplers
 
+drive higher voltages/currents with a low input signal. For example, control a 24 V LED button with a 3.3 V signal.
+
+Optocouplers separates two voltages (galvanic isolation) by driving a phototransistor with an infrared LED.
+So, in addition to amplifying a signal, the output voltage can also be at a completely different level.
+
 **PC817** —
 [(pdf)](Datasheets/PC817C.pdf)
-Optocoupler, 4 legs. Separates two voltages (galvanic isolation) by driving a phototransistor with an infrared LED. 
-Max 3 V 50 mA in, 35 V 50 mA 150 mW out.
+Optocoupler, DIP-4.
+Max 3 V 50 mA in, 35 V 50 mA 150 mW out. Rise/fall times t<sub>r</sub>, t<sub>f</sub> = 4–18 µs.
 
 Easily available and cheap.
 
 **4N25** —
 [(pdf)](Datasheets/4n25.pdf)
-Optocoupler, 6 legs. Easily available.
+Optocoupler, DIP-6. Easily available. Rise/fall times t<sub>r</sub>, t<sub>f</sub> = 2 µs. 
 
 **ILD2**, **ILQ2**, **617** — More optocouplers
+
+### Op-Amps
+
+**NE5532**
+[(pdf)](http://www.ti.com/lit/ds/symlink/ne5532.pdf)
 
 ### Comparators
 
