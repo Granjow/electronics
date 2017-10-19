@@ -1,6 +1,11 @@
 # Soldering
 
 
+## Soldering howtos
+
+* [Professionelles Löten von Lochrasterplatinen](http://docplayer.org/5770969-Professionelles-loeten-von-lochrasterplatinen.html)
+
+
 ## Soldering DIP ICs
 
 From around DIP-6 and above, consider using DIP sockets which are soldered first.

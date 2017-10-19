@@ -79,38 +79,66 @@ See [Driving High-Level Loads With Optocouplers][vishay-loads].
 
 ## Useful parts
 
+### Resistors
+
+http://www.resistorguide.com/
+
 ### Transistors
+
+Current can flow from collector to emitter if the base voltage V<sub>B</sub> is *more positive* (NPN) 
+or more negative (PNP) than the emitter voltage V<sub>E</sub>.
+
+There is a voltage drop V<sub>BE</sub> which depends on the transistor. The difference between base and emitter
+must in fact be higher than the voltage drop.
+
+A transistor also has a (smaller) voltage drop from collector to emitter, V<sub>CE</sub>, which depends on several variables. 
+
+Transistors work in different modes depending on the voltage levels on each inputs.
+
+* Saturation for V<sub>B</sub> > V<sub>C,E</sub> − acts like a switch. (Again, V<sub>B</sub> > V<sub>E</sub> + V<sub>BE(sat)</sub>)
+* Cutoff: No current flows from C to E if V<sub>B</sub> < V<sub>C,E</sub>
+* Active: Transistor works as amplifier for V<sub>C</sub> > V<sub>B</sub> > V<sub>E</sub> with I<sub>C</sub> = β I<sub>B</sub>.
+  Since I<sub>B</sub> is added to the output current, I<sub>E</sub> is 1/α I<sub>C</sub> for α = β / (β+1).
+* Reverse Active: Current flows from E to C if V<sub>C</sub> < V<sub>B</sub> < V<sub>E</sub>. Not how transistors
+  should be used; β<sub>R</sub> is lower.
+
+Further links:
+
+* [Transistor as Switch](http://www.electronicshub.org/transistor-as-switch/)
+* [Bipolar Transistor](http://www.electronics-tutorials.ws/transistor/tran_1.html)
 
 **2N4401**
 [(pdf)](Datasheets/2N4401-D.PDF)
 —
-I<sub>C</sub> = 600 mA
+I<sub>C</sub> = 600 mA, V<sub>BE(sat)</sub> = 0.75–1.2 V
 
 **BC337**
 [(pdf)](Datasheets/bc337.pdf)
 —
-I<sub>C</sub> = 800 mA
+I<sub>C</sub> = 800 mA, V<sub>BE(sat)</sub> = 1.2 V
 
 **BC547**
 [(pdf)](Datasheets/BC547-short.pdf)
 —
-I<sub>C</sub> = 100 mA
+I<sub>C</sub> = 100 mA, V<sub>BE(sat)</sub> = 0.7-0.9 V
 
 **BC635**
 [(pdf)](Datasheets/bc635.pdf)
 —
-I<sub>C</sub> = 1 A
+I<sub>C</sub> = 1 A, V<sub>BE(sat)</sub> = 1 V
 
 **2N2907** *PNP*
 [(pdf)](Datasheets/2N2907A-D.PDF)
 —
-I<sub>C</sub> = −600 mA
+I<sub>C</sub> = −600 mA, V<sub>BE(sat)</sub> = −0.6 to −2.6 V
 
 
 ### MOSFETs
 
-MOSFETs can drive ridiculously high currents. They are also sensitive to electrostatical discharge and 
-it is not too hard to break a MOSFET when not handled carefully; transistors are much more robust in this regard.
+MOSFETs can drive ridiculously high currents in their packings with heatsink like TO-220, TO-262, etc.
+
+They are also sensitive to electrostatical discharge and it is not too hard to break a MOSFET when not handled carefully; 
+transistors are much more robust in this regard.
 
 Some examples (which are all incompatible with normal PCBs because the legs are too large):
 
@@ -188,8 +216,17 @@ Easily available and cheap.
 **4N25** —
 [(pdf)](Datasheets/4n25.pdf)
 Optocoupler, DIP-6. Easily available. Rise/fall times t<sub>r</sub>, t<sub>f</sub> = 2 µs. 
+The phototransistor base is accessible (must be connected) and can be used e.g. to switch off faster; 
+see [Optocoupler with phototransistor base lead][optocoupler-base-pin].
 
-**ILD2**, **ILQ2**, **617** — More optocouplers
+**ILD2**, **ILQ2**
+[(pdf)](http://www.vishay.com/docs/83646/ild1.pdf)
+—
+Dual/quad channel optocouplers, DIP-8 and DIP-16.
+
+**617** — More optocouplers
+
+[optocoupler-base-pin]: https://electronics.stackexchange.com/questions/48462/optocoupler-with-phototransistor-base-lead
 
 ### Op-Amps
 
