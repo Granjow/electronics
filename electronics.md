@@ -102,6 +102,13 @@ Transistors work in different modes depending on the voltage levels on each inpu
 * Reverse Active: Current flows from E to C if V<sub>C</sub> < V<sub>B</sub> < V<sub>E</sub>. Not how transistors
   should be used; β<sub>R</sub> is lower.
 
+Saturation is when the transistor is fully conductive and increasing the base current I<sub>B</sub> does not change
+the output signal any further – or, not significantly.
+ON’s data sheet for the 2N4401 contains a nice graph which shows the collector–emitter forward voltage with increasing I<sub>B</sub>.
+Note how the curve also depends on I<sub>C</sub>.
+
+![Saturation curves](Pictures/transistor-saturation-2N4401.png)
+
 Further links:
 
 * [Transistor as Switch](http://www.electronicshub.org/transistor-as-switch/)
@@ -120,7 +127,7 @@ I<sub>C</sub> = 800 mA, V<sub>BE(sat)</sub> = 1.2 V
 **BC547**
 [(pdf)](Datasheets/BC547-short.pdf)
 —
-I<sub>C</sub> = 100 mA, V<sub>BE(sat)</sub> = 0.7-0.9 V
+I<sub>C</sub> = 100 mA, V<sub>BE(sat)</sub> = 0.7-0.9 V. Constant h<sub>fe</sub>.
 
 **BC635**
 [(pdf)](Datasheets/bc635.pdf)
@@ -201,23 +208,35 @@ I²C based port expander. More features, but did not work for me, communication 
 
 ### Optocouplers
 
-drive higher voltages/currents with a low input signal. For example, control a 24 V LED button with a 3.3 V signal.
+drive higher voltages with a lower-voltage input signal. For example, control a 24 V LED button with a 3.3 V signal.
 
 Optocouplers separates two voltages (galvanic isolation) by driving a phototransistor with an infrared LED.
 So, in addition to amplifying a signal, the output voltage can also be at a completely different level.
 
+The CTR (Current Transmission Ratio) of an optocoupler is defined as I<sub>C</sub>/I<sub>F</sub>. For a CTR of 100 %,
+a forward current of 20 mA through the LED will allow a collector current of 20 mA through the phototransistor.
+
+References:
+
+* [How to Use Optocoupler Normalized Curves](Datasheets/Howto-Optocoupler-normalized-curves_83706.pdf)
+
 **PC817** —
 [(pdf)](Datasheets/PC817C.pdf)
-Optocoupler, DIP-4.
+DIP-4, CTR 50–140 %.
 Max 3 V 50 mA in, 35 V 50 mA 150 mW out. Rise/fall times t<sub>r</sub>, t<sub>f</sub> = 4–18 µs.
 
 Easily available and cheap.
 
 **4N25** —
 [(pdf)](Datasheets/4n25.pdf)
-Optocoupler, DIP-6. Easily available. Rise/fall times t<sub>r</sub>, t<sub>f</sub> = 2 µs. 
+DIP-6. CTR 20–50 %. Rise/fall times t<sub>r</sub>, t<sub>f</sub> = 2 µs. 
 The phototransistor base is accessible (must be connected) and can be used e.g. to switch off faster; 
 see [Optocoupler with phototransistor base lead][optocoupler-base-pin].
+
+**4N35**
+[(pdf)](https://www.vishay.com/docs/81181/4n35.pdf)
+—
+Like the 4N25, but with a CTR > 100 %.
 
 **ILD2**, **ILQ2**
 [(pdf)](http://www.vishay.com/docs/83646/ild1.pdf)
