@@ -31,9 +31,13 @@ The left side is marked, e.g. with a dot.
 
 * [ESKA: Technische Einführung](http://eska-fuses.de/fileadmin/pdf/content/Technische_Einfuehrung.pdf)
 
-## Wires
 
-Pin headers on PCBs are often connected with Dupont cables. I ended up crimping hundreds of them. This video
+## Connectors + Wires
+
+The typical black connectors are originally produced by DuPont and called Mini-PV. Nowadays, they are known as
+DuPont connectors and produced by [Molex][molex-catalogue] (SL line) and many others.
+
+Pin headers on PCBs are often connected with Dupont wires. I ended up crimping hundreds of them. This video
 gives a quite good understanding:
 [Custom Cables & Guide to Crimping Dupont PCB Interconnect Cables](https://www.youtube.com/watch?v=GkbOJSvhCgU).
 I am using pliers and no special crimping tools, which works just as well with a bit of practice.
@@ -45,9 +49,11 @@ For crimping, the components can be found on ebay:
 * *dupont pin housing 1P (2P, 3P, …)*; The pin housing work for both male and female pins, there is no difference.
   1P denotes housings for a single pin, 2P for two pins, etc. I use 2P most often, then 1P, 4P, and 3P.
 
-The typical black connectors are produced by [Molex][molex-catalogue] and others.
+Connectors should not be soldered. See [Common wire-to-board, wire-to-wire connectors, and crimp tools][crimp-connectors]
+
 
 [molex-catalogue]: http://www.molex.com/catalog/web_catalog/pdfs/C.pdf
+[crimp-connectors]: http://tech.mattmillman.com/info/crimpconnectors/
 
 
 ## Breadboard prototyping
@@ -111,8 +117,18 @@ Note how the curve also depends on I<sub>C</sub>.
 
 Further links:
 
-* [Transistor as Switch](http://www.electronicshub.org/transistor-as-switch/)
+* [Transistor as Switch](http://www.electronicshub.org/transistor-as-switch/), see also the chapter “Example of NPN Transistor as a Switch”
+  about inverting an input signal with a transistor.
 * [Bipolar Transistor](http://www.electronics-tutorials.ws/transistor/tran_1.html)
+
+#### Sample parts
+
+The following transistors are all in a TO-92 housing with 3 legs. Note that the leg order E–B–C is not standardised,
+so it needs to be looked up for each transistor individually in the data sheet.
+
+There are also transistor arrays in DIP housings, like the ULN2802A [(pdf)](http://www.ti.com/lit/ds/symlink/uln2803a.pdf),
+which have one common emitter (or collector, for PNP). They are in fact darlington transistor arrays (two transistors in series)
+and suit well as switches with a h<sub>fe</sub> of around 1000.
 
 **2N4401**
 [(pdf)](Datasheets/2N4401-D.PDF)
@@ -147,7 +163,19 @@ MOSFETs can drive ridiculously high currents in their packings with heatsink lik
 They are also sensitive to electrostatical discharge and it is not too hard to break a MOSFET when not handled carefully; 
 transistors are much more robust in this regard.
 
-Some examples (which are all incompatible with normal PCBs because the legs are too large):
+References:
+
+* [How do I choose my optocoupler to drive a solenoid with a MOSFET?][bjt-vs-mosfet]
+
+Some TO-92 MOSFETs:
+
+**2N7000**
+[(pdf)](https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf)
+
+**BS170**
+[(pdf)](https://www.fairchildsemi.com/datasheets/BS/BS170.pdf)
+
+Some examples (which are all incompatible with normal 2.54 mm PCBs because the legs are too thick):
 
 **IRL3103**
 [(pdf)](http://www.irf.com/product-info/datasheets/data/irl3103.pdf)
@@ -173,6 +201,10 @@ V<sub>DSS</sub> −55 V, R<sub>DS(on)</sub> 20 mΩ, I<sub>D</sub> −74 A
 [(pdf)](http://www.vishay.com/docs/91278/sihfr902.pdf)
 —
 V<sub>DSS</sub> −60 V, R<sub>DS(on)</sub> 280 mΩ, I<sub>D</sub> −8.8 A
+
+
+[bjt-vs-mosfet]: https://electronics.stackexchange.com/a/43073/135063
+
 
 ### Diodes
 
@@ -249,8 +281,22 @@ Dual/quad channel optocouplers, DIP-8 and DIP-16.
 
 ### Op-Amps
 
+are transitor based circuits. An op-amp also amplifies the signal, but with additional benefits like a temperature
+independent, and generally higher, h<sub>fe</sub>. Ideally, they have infinite input inpedance, i.e. they are 
+voltage controlled. In reality, a small *input bias current* I<sub>IB</sub> does flow.
+The NE5532, for example, has an I<sub>IB</sub> of 1 µA.
+
+References:
+
+* [Op Amp Input Bias Current][opamp-bias-current-pdf]
+* [Op Amp Input Bias Current][opamp-bias-current]
+
 **NE5532**
 [(pdf)](http://www.ti.com/lit/ds/symlink/ne5532.pdf)
+
+[opamp-bias-current-pdf]: http://www.analog.com/media/en/training-seminars/tutorials/MT-038.pdf
+[opamp-bias-current]: http://ecircuitcenter.com/Circuits/op_ibias/op_ibias.htm
+
 
 ### Comparators
 
