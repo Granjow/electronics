@@ -34,8 +34,30 @@ The left side is marked, e.g. with a dot.
 
 ## Connectors + Wires
 
+Connector wires can be bought, but one always ends up making custom ones (different length e.g.). I suggest using
+pliers for crimping, which yields good results with a bit of practice. The original crimping tools usually cost hundreds
+of dollars and are good for professional use.
+
+Connectors should not be soldered. See [Common wire-to-board, wire-to-wire connectors, and crimp tools][crimp-connectors].
+
+References:
+
+* [Connector Basics](https://learn.sparkfun.com/tutorials/connector-basics) at sparkfun
+
+### JST RCY
+
+[Data Sheet](http://www.jst-mfg.com/product/pdf/eng/eRCY.pdf)
+
+The RCY is a wire-to-wire connector, i.e. it is designed for connecting two wires. The plug (male) pins are protected
+by the housing (no accidential short-circuiting something).
+
+The pins on RCYs are numbered; pin 1 is typically used for GND.
+
+### DuPont Mini-PV / Molex SL
+
 The typical black connectors are originally produced by DuPont and called Mini-PV. Nowadays, they are known as
-DuPont connectors and produced by [Molex][molex-catalogue] (SL line) and many others.
+DuPont connectors and produced by [Molex][molex-catalogue] (SL line) and many others. Originally, they are wire-to-board
+connectors, and a plug (male) version does not exist; only a receptor (female) for jumpers was produced.
 
 Pin headers on PCBs are often connected with Dupont wires. I ended up crimping hundreds of them. This video
 gives a quite good understanding:
@@ -48,8 +70,6 @@ For crimping, the components can be found on ebay:
   convenient for storage.
 * *dupont pin housing 1P (2P, 3P, …)*; The pin housing work for both male and female pins, there is no difference.
   1P denotes housings for a single pin, 2P for two pins, etc. I use 2P most often, then 1P, 4P, and 3P.
-
-Connectors should not be soldered. See [Common wire-to-board, wire-to-wire connectors, and crimp tools][crimp-connectors]
 
 
 [molex-catalogue]: http://www.molex.com/catalog/web_catalog/pdfs/C.pdf
@@ -121,7 +141,7 @@ Further links:
   about inverting an input signal with a transistor.
 * [Bipolar Transistor](http://www.electronics-tutorials.ws/transistor/tran_1.html)
 
-#### Sample parts
+#### Sample Transistors
 
 The following transistors are all in a TO-92 housing with 3 legs. Note that the leg order E–B–C is not standardised,
 so it needs to be looked up for each transistor individually in the data sheet.
@@ -133,27 +153,38 @@ and suit well as switches with a h<sub>fe</sub> of around 1000.
 **2N4401**
 [(pdf)](Datasheets/2N4401-D.PDF)
 —
-I<sub>C</sub> = 600 mA, V<sub>BE(sat)</sub> = 0.75–1.2 V
+I<sub>C</sub> 600 mA, V<sub>BE(sat)</sub> 0.75–1.2 V, V<sub>CE(sat)</sub> 400–750 mV
 
 **BC337**
-[(pdf)](Datasheets/bc337.pdf)
+[(pdf)](Datasheets/BC337-D.PDF)
 —
-I<sub>C</sub> = 800 mA, V<sub>BE(sat)</sub> = 1.2 V
+I<sub>C</sub> = 800 mA, V<sub>BE(sat)</sub> = 1.2 V, V<sub>CE(sat)</sub> 300–700 mV
 
 **BC547**
 [(pdf)](Datasheets/BC547-short.pdf)
 —
-I<sub>C</sub> = 100 mA, V<sub>BE(sat)</sub> = 0.7-0.9 V. Constant h<sub>fe</sub>.
+I<sub>C</sub> = 100 mA, V<sub>BE(sat)</sub> = 0.7–0.9 V, V<sub>CE(sat)</sub> 90–250 mV. Constant h<sub>fe</sub>.
 
 **BC635**
 [(pdf)](Datasheets/bc635.pdf)
 —
-I<sub>C</sub> = 1 A, V<sub>BE(sat)</sub> = 1 V
+I<sub>C</sub> 1 A, V<sub>BE(sat)</sub> = 1 V, V<sub>CE(sat)</sub> 10–300 mV.
+
+**BC327** *PNP*
+[(pdf)](Datasheets/BC327-D.PDF)
+—
+I<sub>C</sub> −800 mA, V<sub>CE(sat)</sub> −0.7 to −1 V
+
+
+**BC557** *PNP*
+[(pdf)](Datasheets/BC557-short.pdf)
+—
+I<sub>C</sub> −100 mA, V<sub>CE(sat)</sub> −90 to −250 mV
 
 **2N2907** *PNP*
 [(pdf)](Datasheets/2N2907A-D.PDF)
 —
-I<sub>C</sub> = −600 mA, V<sub>BE(sat)</sub> = −0.6 to −2.6 V
+I<sub>C</sub> −600 mA, V<sub>BE(sat)</sub> −0.6 to −2.6 V, V<sub>CE(sat)</sub> −70 to −1600 mV
 
 
 ### MOSFETs
@@ -208,11 +239,22 @@ V<sub>DSS</sub> −60 V, R<sub>DS(on)</sub> 280 mΩ, I<sub>D</sub> −8.8 A
 
 ### Diodes
 
+are conductive in one direction.
+Normal diodes have a forward voltage V<sub>f</sub> of around 0.7 V, which increases with higher currents and lower temperatures.
+Schottky and Germanium diodes have smaller forward voltages around V<sub>f</sub> = 0.3 V.
+
+
 **1N4001** up to **1N4007** 
 [(pdf)](Datasheets/1n4001.pdf)
-— 
+—
 Rectifier diode, 50 to 1000 V, 1 W.
-Forward voltage (voltage drop) is V<sub>F</sub> = 1.1 V.
+Forward voltage (voltage drop) is V<sub>F</sub> = 0.75 V @ 0.1 A and 1.1 V @ 1 A.
+
+**1N5817** to **1N5819**
+[(pdf)](Datasheets/1N5817-D.PDF)
+—
+Schottky barrier rectifier diode. V<sub>F</sub> = 0.32 V @ 0.1 A and 0.45 V @ 1 A.
+
 
 ## Useful ICs
 
@@ -355,6 +397,9 @@ were active. 7-segment displays [can easily be controlled by a Raspberry][7-segm
 
 **MAX7219**
 controls 8 elements and uses 2 inputs, clock and data.
+
+**SBA32-11EGWA**
+[(pdf)](Datasheets/Kingbright-SBA32-11EGWA.pdf) is a large segment display with red *and* green (and, together, orange).
 
 
 ### LEDs
