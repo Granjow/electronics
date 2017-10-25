@@ -25,6 +25,13 @@ Of the other 16 pins, there are
 * 2× I²C pins with pullup (Physical pins 3, 5)
 * 2× Reserved I²C EEPROM pins (Physical pins 27, 28)
 
+Pinout of available pins, `~~` are available:
+
+    02 04 06 08 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40
+    5v 5v 0v ~~ ~~ ~~ 0v ~~ ~~ 0v ~~ ~~ ~~ xx 0v ~~ 0v ~~ ~~ ~~
+    3v xx xx ~~ 0v ~~ ~~ ~~ 3v ~~ ~~ ~~ 0v xx ~~ ~~ ~~ ~~ ~~ 0v
+    01 03 05 07 09 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39
+
 ### Electrical Specifications
 
 **Input** is 5±0.25 V, Raspi draws 8–9 W; with periphery (mouse, keyboard, other USB devices) up to 15 W.
