@@ -7,3 +7,4 @@ Pictures
 * AWG + which crimps
 * Wire for breadboard (single wire, diameter)
 * DIP sockets
+* Soldering tips

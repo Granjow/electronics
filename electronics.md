@@ -13,6 +13,9 @@ The left side is marked, e.g. with a dot.
      1 2 3 4
 
 **DIP** (dual in-line package): ICs with pins for 2.54 mm breadboards. DIP-4 has 4 pins, etc.
+The following picture shows a DIP-16 IC, a DIP-4 optocoupler, and another one on a DIP-8 socket.
+
+![DIP packages](Pictures/dip-packages.jpg)
 
 **SOP**, SOIC, (T)SO… (small outline …): ICs for surface mounting (SMD) 
 
