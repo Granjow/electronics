@@ -21,12 +21,9 @@ The following picture shows a DIP-16 IC, a DIP-4 optocoupler, and another one on
 
 ## Terms
 
-* Forward Voltage V<sub>F</sub>
-
-  E.g. voltage drop over diodes, also in optocouplers. 
-
-* Input Clamp Current V<sub>IK</sub>, Output Clamp Current V<sub>OK</sub>
-  
+* V<sub>CC</sub>, V<sub>DD</sub>: +, V<sub>SS</sub>, V<sub>EE</sub>, GND: −. More information [on Wikipedia](https://en.wikipedia.org/wiki/IC_power-supply_pin)
+* V<sub>F</sub>: Forward Voltage. E.g. voltage drop over diodes, also in optocouplers. 
+* V<sub>IK</sub>: Input Clamp Current, V<sub>OK</sub>: Output Clamp Current.
   Current which will destroy the IC if the input voltage is out of range.
   See [StackExchange](https://electronics.stackexchange.com/questions/107687/input-and-output-clamping-current-of-the-ic-4082)
 
@@ -192,7 +189,8 @@ I<sub>C</sub> −600 mA, V<sub>BE(sat)</sub> −0.6 to −2.6 V, V<sub>CE(sat)</
 
 ### MOSFETs
 
-MOSFETs can drive ridiculously high currents in their packings with heatsink like TO-220, TO-262, etc.
+MOSFETs can drive ridiculously high currents in their packings with heatsink like TO-220, TO-262, etc.;
+these are called *power MOSFETs*.
 
 They are also sensitive to electrostatical discharge and it is not too hard to break a MOSFET when not handled carefully; 
 transistors are much more robust in this regard.
@@ -204,10 +202,14 @@ References:
 Some TO-92 MOSFETs:
 
 **2N7000**
-[(pdf)](https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf)
+[(pdf)](Datasheets/2N7000-short.pdf)
+—
+N-Channel
 
 **BS170**
-[(pdf)](https://www.fairchildsemi.com/datasheets/BS/BS170.pdf)
+[(pdf)](Datasheets/BS170-short.pdf)
+—
+N-Channel
 
 Some examples (which are all incompatible with normal 2.54 mm PCBs because the legs are too thick):
 
@@ -268,19 +270,23 @@ It is supported by many devices like ICs, Raspberry, Arduinos, etc.
 
 **PCF8574P** and **PCF8574AP** —
 [(pdf)](Datasheets/PCF8574.pdf)
-I²C based port expander. Connect SDA (data) and SCL (clock) 
-to the Raspi I2C pins (5 and 7) for 8 additional digital IOs. 
+I²C based port expander. Connect SDA (data) and SCL (clock) to the Raspi I²C pins (5 and 7) for 8 additional digital IOs.
 
 Both ICs have 3 address bits/pins, so 8 of them can be used. The P and AP differ only in their 
 slave address, so when used together, 16 of them can be attached (resulting in 128 IOs).
 
-**MCP23008** and **MCP23016** —
-[(pdf 016)](Datasheets/MCP23016_20090C.pdf)
-[(pdf 017)](Datasheets/MCP23017_20001952C.pdf)
-I²C based port expander. More features, but did not work for me, communication randomly stopped.
-(Very small chance that I used the wrong data sheet.)
+The IOs are quasi-bidirectional. An IO is either configured LOW, in which case it functions as open drain (“output”) to GND.
+When configured HIGH, a 100 µA current source to V<sub>DD</sub> is active and the IO functions as input.
 
-**MCP23017** —
+**MCP23008** and **MCP23017**
+(PDF: [23008](Datasheets/MCP23008_21919e.pdf),
+[23016 (deprecated)](Datasheets/MCP23016_20090C.pdf),
+[23017](Datasheets/MCP23017_20001952C.pdf))
+—
+I²C based port expander, also as SPI version. IOs can be configured individually as input or output. Outputs can
+source/sink 25 mA each (i.e. both when HIGH or LOW). They have internal pull-up resistors which can be enabled.
+
+See also:
 [Tutorial: Why use MCP23008 / MCP23016 / MCP23017 expanders](http://peter224722.blogspot.ch/2014/03/why-use-mcp23008-mcp23016-mcp23017.html)
 
 ### Optocouplers

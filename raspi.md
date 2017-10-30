@@ -88,9 +88,12 @@ Read/write GPIOs. `gpio` works with the WiringPi GPIO numbers!
 
 ### I²C debugging
 
-See also: [Raspberry Pi: I2C-Konfiguration und -Programmierung](http://www.netzmafia.de/skripten/hardware/RasPi/RasPi_I2C.html)
+See also: 
 
-`i2cdetect` can list devices on the bus:
+* [Raspberry Pi: I2C-Konfiguration und -Programmierung](http://www.netzmafia.de/skripten/hardware/RasPi/RasPi_I2C.html)
+* [Mehr I/O-Ports bereitstellen mit dem PCF8574](http://www.raspberry-pi-geek.de/Magazin/2016/03/Mehr-I-O-Ports-bereitstellen-mit-dem-PCF8574)
+
+`i2cdetect` (as root) can list devices on the bus:
 
 ```
 ~> i2cdetect -y 1
@@ -111,7 +114,23 @@ SMBus Receive Byte               yes
 [...]
 ```
 
-To read/write values: `i2cget` and `i2cset`.
+To read/write values: `i2cget` and `i2cset`. In case of PCF8574, only `i2cget` is used because the IOs are read and written
+with the same command (note that `0x20` is the address of the IC as shown in `i2cdetect`):
+
+```
+~> i2cget -y 1 0x20
+0x02
+~> i2cget -y 1 0x20 0x01
+0x02
+```
+
+For MCP23008:
+```
+~> i2cget -y 1 0x20 0x09
+0x12
+~> i2cset -y 1 0x20 0x00 0xfe # Configure pin 0 (bit 1) as output and all others (0xfe) as input
+~> i2cset -y 1 0x20 0x09 0x01 # Set pin 0 (bit 1) to high
+```
 
 [gpio-specs]: (http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/raspberry-pi/gpio-pin-electrical-specifications)
 

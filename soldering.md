@@ -49,6 +49,16 @@ and it can easily be replaced if broken or removed/salvaged if not required anym
 DIP sockets can be soldered next to each other, and ICs can span multiple sockets without a problem, so if you do not
 have the correct size, combine some sockets and you are fine.
 
+
+## Pin Headers
+
+Pin headers usually come in rows of 50 pins. They need to be cut properly to avoid breaking off parts at the wrong place.
+A side cutter unfortunately does not cut it (ha ha pun) as it is too wide. Cutting pin headers with a cutter on a wooden 
+board works quite good; start cutting from one side, then flip it and cut it through from the other side.
+
+![Cutting Pin Headers](Pictures/cut-pin-headers.jpg)
+
+
 # MOSFETs
 
 Larger MOSFETs have a hole in their heatsink which allows them to be mounted onto an even larger heatsink.
