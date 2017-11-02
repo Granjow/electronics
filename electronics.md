@@ -280,14 +280,26 @@ When configured HIGH, a 100 µA current source to V<sub>DD</sub> is active and t
 
 **MCP23008** and **MCP23017**
 (PDF: [23008](Datasheets/MCP23008_21919e.pdf),
-[23016 (deprecated)](Datasheets/MCP23016_20090C.pdf),
 [23017](Datasheets/MCP23017_20001952C.pdf))
 —
-I²C based port expander, also as SPI version. IOs can be configured individually as input or output. Outputs can
-source/sink 25 mA each (i.e. both when HIGH or LOW). They have internal pull-up resistors which can be enabled.
+I²C based port expander, also available as SPI version. MCP23008 has 8 ports in DIP-18, and MCP23017 has 16 ports in DIP-28.
+
+IOs can be configured individually as input or output. Outputs can source/sink 25 mA each (i.e. both when HIGH or LOW).
+They have internal pull-up resistors which can be enabled.
+Note that the ¬RST pin needs to be connected to V<sub>DD</sub> unless it needs resetting.
+
+The MCP23017 ports are divided into the two banks A (ports 0–7) and B (ports 8–15) which are addressed separately.
+Addressing of registers can be changed by setting IOCON.BANK, which defaults to 0 (GPIO addresses are on 0x12 and 0x13).
+
+The [MCP23016](Datasheets/MCP23016_20090C.pdf) is deprecated.
 
 See also:
-[Tutorial: Why use MCP23008 / MCP23016 / MCP23017 expanders](http://peter224722.blogspot.ch/2014/03/why-use-mcp23008-mcp23016-mcp23017.html)
+
+* [Tutorial: Why use MCP23008 / MCP23016 / MCP23017 expanders][mcpxx-tut]
+* [How to get pin addresses on a MCP23017][mcp23017-banks] (StackExchange)
+
+[mcpxx-tut]: http://peter224722.blogspot.ch/2014/03/why-use-mcp23008-mcp23016-mcp23017.html
+[mcp23017-banks]: https://raspberrypi.stackexchange.com/questions/7205/how-to-get-pin-addresses-on-a-mcp23017
 
 ### Optocouplers
 

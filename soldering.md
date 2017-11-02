@@ -38,6 +38,23 @@ At lower temperatures, the solder does not stick to the coating.
 After removing the coating, solder at normal temperatures (around 330 °C for Pb free solder).
 
 
+## Connecting with uncoated copper wire
+
+Thin tinned copper wire (31AWG here) is useful for connections over larger distances. It should be soldered every few
+holes on the PCB board to avoid that the wire might shifht and touch other contacts.
+
+![Copper wire](Pictures/solder-copper-wire-connection.jpg)
+
+When creating corners, the free end of the wire should point upwards (or the corner points into the hole). When soldering,
+the end is pushed down, which presses the corner onto the hole and allows to get the wire as close as possible to the PCB.
+
+The corner can be created with pliers, but I often use the (narrow) soldering tip directly while I’m soldering as I don’t
+have to switch the tools.
+
+![Copper wire](Pictures/solder-copper-wire-bending.jpg)
+![Copper wire](Pictures/solder-copper-wire-corner.jpg)
+
+
 ## Soldering DIP ICs
 
 From around DIP-6 and above, consider using DIP sockets which are soldered first.

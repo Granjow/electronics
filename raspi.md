@@ -128,8 +128,15 @@ For MCP23008:
 ```
 ~> i2cget -y 1 0x20 0x09
 0x12
-~> i2cset -y 1 0x20 0x00 0xfe # Configure pin 0 (bit 1) as output and all others (0xfe) as input
-~> i2cset -y 1 0x20 0x09 0x01 # Set pin 0 (bit 1) to high
+~> i2cset -y 1 0x20 0x00 0xfe   # Configure pin 0 (bit 1) as output and all others (0xfe) as input
+~> i2cset -y 1 0x20 0x09 0x01   # Set pin 0 (bit 1) to high
+```
+
+For MCP23017 in the standard configuration with `IOCON.BANK = 0`:
+
+```
+~> i2cset -y 1 0x21 0x00 0xf0   # Configure pins 0 to 3 as output (0) by writing 0b11110000
+~> i2cset -y 1 0x21 0x12 0x0d   # Enable pins 0,2,3 by writing 0b00001101
 ```
 
 [gpio-specs]: (http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/raspberry-pi/gpio-pin-electrical-specifications)
