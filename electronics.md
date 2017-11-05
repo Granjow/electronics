@@ -189,6 +189,13 @@ I<sub>C</sub> −600 mA, V<sub>BE(sat)</sub> −0.6 to −2.6 V, V<sub>CE(sat)</
 
 ### MOSFETs
 
+are *voltage controlled*, in contrast to bipolar transistors, which are current controlled. This means that when
+a current flows between drain and source, there is (almost) no current through the gate.
+
+In N-channel MOSFETs, current flows if V<sub>G</sub> > V<sub>S</sub>.
+In P-Channel MOSFETs, current flows for V<sub>G</sub> < V<sub>S</sub>.
+The load goes to the drain.
+
 MOSFETs can drive ridiculously high currents in their packings with heatsink like TO-220, TO-262, etc.;
 these are called *power MOSFETs*.
 
@@ -211,31 +218,36 @@ N-Channel
 —
 N-Channel
 
-Some examples (which are all incompatible with normal 2.54 mm PCBs because the legs are too thick):
+Some examples (which are all incompatible with normal 2.54 mm PCB holes because the legs are too thick):
 
 **IRL3103**
 [(pdf)](http://www.irf.com/product-info/datasheets/data/irl3103.pdf)
 —
+N-Channel.
 V<sub>DSS</sub> 30 V, R<sub>DS(on)</sub> 12 mΩ, I<sub>D</sub> 64 A
 
 **IRL3803**
 [(pdf)](http://www.irf.com/product-info/datasheets/data/irl3803.pdf)
 —
+N-Channel.
 V<sub>DSS</sub> 30 V, R<sub>DS(on)</sub> 6 mΩ, I<sub>D</sub> 140 A
 
 **IRF5305**
 [(pdf)](http://www.irf.com/product-info/datasheets/data/irf5305s.pdf)
 —
+P-Channel.
 V<sub>DSS</sub> −55 V, R<sub>DS(on)</sub> 6 mΩ, I<sub>D</sub> −31 A
 
 **IRF4905**
 [(pdf)](http://www.irf.com/product-info/datasheets/data/irf4905s.pdf)
 —
+P-Channel.
 V<sub>DSS</sub> −55 V, R<sub>DS(on)</sub> 20 mΩ, I<sub>D</sub> −74 A
 
 **IRFU9024**
 [(pdf)](http://www.vishay.com/docs/91278/sihfr902.pdf)
 —
+P-Channel.
 V<sub>DSS</sub> −60 V, R<sub>DS(on)</sub> 280 mΩ, I<sub>D</sub> −8.8 A
 
 
