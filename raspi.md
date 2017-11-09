@@ -269,6 +269,14 @@ Connect to WLAN (same effect as via task bar) in `/etc/wpa_supplicant/wpa_suppli
         key_mgmt=WPA-PSK
     }
 
+or the output of `wpa_password "YOUR_SSID" "YOUR_PSK"` if the password should be encrypted.
+Then reconfigure wlan0 and check the settings.
+More information in the [Raspi docs](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md).
+
+    wpa_cli -i wlan0 reconfigure
+    ifconfig wlan0
+    ping -I wlan0 google.com # Use wlan0 for ping. See ifmetric settings above.
+
 Enable SSH
 
     systemctl enable ssh
