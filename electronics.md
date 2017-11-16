@@ -273,6 +273,14 @@ Forward voltage (voltage drop) is V<sub>F</sub> = 0.75 V @ 0.1 A and 1.1 V @ 1 A
 Schottky barrier rectifier diode. V<sub>F</sub> = 0.32 V @ 0.1 A and 0.45 V @ 1 A.
 
 
+## Relays
+
+Common 5 V relay module. Powering it with 3.3 V from a Raspberry *often* works when connecting VCC and JD-VCC.
+More reliable is to use separate 5 V for JD-VCC. The relay switches when IN0 is *low.*
+
+![Relay Module](Datasheets/5v-relay-module-songle.jpg)
+
+
 ## Useful ICs
 
 ### I²C
