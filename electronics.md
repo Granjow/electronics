@@ -31,6 +31,9 @@ The following picture shows a DIP-16 IC, a DIP-4 optocoupler, and another one on
 
 * [ESKA: Technische Einführung](http://eska-fuses.de/fileadmin/pdf/content/Technische_Einfuehrung.pdf)
 
+Fuses blow at different speed. Usually, fast fuses are used for sensitive electronics, and slow fuses are used
+if larger currents occur when powering on a device.
+
 
 ## Connectors + Wires
 
@@ -117,7 +120,8 @@ or more negative (PNP) than the emitter voltage V<sub>E</sub>.
 There is a voltage drop V<sub>BE</sub> which depends on the transistor. The difference between base and emitter
 must in fact be higher than the voltage drop.
 
-A transistor also has a (smaller) voltage drop from collector to emitter, V<sub>CE</sub>, which depends on several variables. 
+A transistor also has a (smaller) voltage drop from collector to emitter, V<sub>CE</sub>, which depends on several variables.
+V<sub>CE</sub> also determines losses. A 2N4001 at 500 mA has a V<sub>CE</sub> = 0.75 V, resulting in 375 mW power dissipation.
 
 Transistors work in different modes depending on the voltage levels on each inputs.
 
@@ -190,21 +194,27 @@ I<sub>C</sub> −600 mA, V<sub>BE(sat)</sub> −0.6 to −2.6 V, V<sub>CE(sat)</
 ### MOSFETs
 
 are *voltage controlled*, in contrast to bipolar transistors, which are current controlled. This means that when
-a current flows between drain and source, there is (almost) no current through the gate.
+a current flows between drain and source, a MOSFET requires (almost) no current through the gate.
 
-In N-channel MOSFETs, current flows if V<sub>G</sub> > V<sub>S</sub>.
-In P-Channel MOSFETs, current flows for V<sub>G</sub> < V<sub>S</sub>.
+* In N-channel MOSFETs, current flows if V<sub>G</sub> > V<sub>S</sub>.
+* In P-Channel MOSFETs, current flows for V<sub>G</sub> < V<sub>S</sub>.
+
 The load goes to the drain.
 
-MOSFETs can drive ridiculously high currents in their packings with heatsink like TO-220, TO-262, etc.;
-these are called *power MOSFETs*.
+MOSFETs can drive ridiculously high currents (like 140 A) in their packings with heatsink like TO-220, TO-262, etc.;
+these are called *power MOSFETs*. N-channel power mosfets have lower resistance than P-channels.
 
-They are also sensitive to electrostatical discharge and it is not too hard to break a MOSFET when not handled carefully; 
+To efficiently switch MOSFETs at high load, this must be done quickly due to losses during the transition phase.
+This is important especially for power MOSFETs operating at higher frequency. Switching quickly requires *high currents*
+to charge/discharge, but only for a short amount of time. 
+
+The MOSFET gate is sensitive to electrostatical discharge and it is not too hard to break a MOSFET when not handled carefully; 
 transistors are much more robust in this regard.
 
 References:
 
 * [How do I choose my optocoupler to drive a solenoid with a MOSFET?][bjt-vs-mosfet]
+* [P-channel MOSFET][p-channel-mosfet] and power MOSFETs
 
 Some TO-92 MOSFETs:
 
@@ -218,7 +228,7 @@ N-Channel
 —
 N-Channel
 
-Some examples (which are all incompatible with normal 2.54 mm PCB holes because the legs are too thick):
+Larger MOSFETs; note that their legs do not fit into 2.54 mm PCB holes, but they can be soldered on top of PCBs.
 
 **IRL3103**
 [(pdf)](http://www.irf.com/product-info/datasheets/data/irl3103.pdf)
@@ -252,6 +262,7 @@ V<sub>DSS</sub> −60 V, R<sub>DS(on)</sub> 280 mΩ, I<sub>D</sub> −8.8 A
 
 
 [bjt-vs-mosfet]: https://electronics.stackexchange.com/a/43073/135063
+[p-channel-mosfet]: http://www.sprut.de/electronic/switch/pkanal/pkanal.html
 
 
 ### Diodes
@@ -275,7 +286,29 @@ Schottky barrier rectifier diode. V<sub>F</sub> = 0.32 V @ 0.1 A and 0.45 V @ 1 
 
 ## Relays
 
-Common 5 V relay module. Powering it with 3.3 V from a Raspberry *often* works when connecting VCC and JD-VCC.
+Relays switch a contact by magnetic force, allowing a small voltage to control e.g. 220 V.
+
+Since relays are mechanical switches, their switching speed is limited to e.g. 10 per second, and they also have
+an expected life time both mechanically (switch breaks, e.g.) and electrically (switch burns due to sparks on contact).
+
+Operating relays requires a certain amount of power. *Relay modules* operate the relay by amplifying the input signal,
+and they often provide galvanic separation between signal and relay power.
+
+**2-channel 5 V Songle Relay Module with Optocoupler**
+[(pdf)](Datasheets/SRD-05VDC-SL-C-Datasheet.pdf)
+—
+Common 5 V relay module which is often used with Arduinos, Raspis, etc., easily available.
+10 A 250 V, life expectation 10⁵ (el.) / 10⁷ (mech.) operations for 1 op/second.
+
+The relay is not operated directly; it can/should be powered by a second source (JD-VCC) which is galvanically
+separated from the input signal. In this relay, a small input signal drives an optocoupler, which itself drives
+the relay with a transistor.
+
+Powering it with 3.3 V from a Raspberry *often* works when connecting VCC and JD-VCC.
+If the current is not high enough (e.g. 16 mA from the Raspi), the LED IN1 will be on, but nothing happens.
+Since relays are mechanical switches, it is often possible to trigger the switch by flicking against the relay,
+which is naturally not a long term solution but a fun fact.
+
 More reliable is to use separate 5 V for JD-VCC. The relay switches when IN0 is *low.*
 
 ![Relay Module](Datasheets/5v-relay-module-songle.jpg)
