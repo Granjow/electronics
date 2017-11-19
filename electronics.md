@@ -309,6 +309,23 @@ Forward voltage (voltage drop) is V<sub>F</sub> = 0.75 V @ 0.1 A and 1.1 V @ 1 A
 Schottky barrier rectifier diode. V<sub>F</sub> = 0.32 V @ 0.1 A and 0.45 V @ 1 A.
 
 
+### Zener Diodes, Z Diodes
+
+are used for overvoltage protection. Unlike normal diodes, they are mainly operated in reverse direction where the
+breakdown voltage U<sub>BR</sub> is well-defined. Above this voltage, the diode conducts with a voltage drop of U<sub>BR</sub>.
+
+A voltage of 3.3 V can therefore be maintained by a 3.3 V Zener diode.
+
+
+### Varistors
+
+are *variable resistors* whose resistance depends on the voltage. Above a certain voltage (like 30 V or 250 V), 
+resistance drops and the varistor conducts.
+
+Compared to Zener diodes, varistors are less precise. They are also used for high voltage to e.g. protect against
+lightning strikes where high voltages occur for a very short time.
+
+
 ## Relays
 
 Relays switch a contact by magnetic force, allowing a small voltage to control e.g. 220 V.
