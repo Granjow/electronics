@@ -27,12 +27,37 @@ The following picture shows a DIP-16 IC, a DIP-4 optocoupler, and another one on
   Current which will destroy the IC if the input voltage is out of range.
   See [StackExchange](https://electronics.stackexchange.com/questions/107687/input-and-output-clamping-current-of-the-ic-4082)
 
+
 ## Fuses
+
+protect against overcurrent.
+
+### Normal fuses
 
 * [ESKA: Technische Einführung](http://eska-fuses.de/fileadmin/pdf/content/Technische_Einfuehrung.pdf)
 
+Fuses usually contain a metal wire which melts when the current is too large, hereby interrupting the electrical circuit.
+The fuse then has to be replaced.
+
 Fuses blow at different speed. Usually, fast fuses are used for sensitive electronics, and slow fuses are used
 if larger currents occur when powering on a device.
+
+### Resettable fuses
+
+* [PolySwitch Fundamentals](Datasheets/S11_PolySwitch-Fundamentals.pdf)
+
+Resettable fuses conduct only when cold. High currents cause it to heat up, and the resistance rasises.
+When the current drops, the fuse cools down and conducts again.
+
+Resettable fuses do not need to be replaced after a trip. They are mainly available up to 60 V / 40 A.
+
+Resettable fuses are guaranteed to trip above I<sub>trip</sub>, but not below I<sub>hold</sub>. The trip time depends
+on the current; for the PRFA.025, it is 6 ms at 10 A, and 6 s at 1 A.
+
+**PRFA.025**
+[(pdf)](Datasheets/Schurter_typ_PFRA.pdf)
+—
+Series of resettable fuses up to 60 V and 100 A.
 
 
 ## Connectors + Wires

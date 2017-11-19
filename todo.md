@@ -12,4 +12,4 @@ Pictures
 * Symbol MOSFET
 * Symbol PNP, NPN
 * Symbol Diode
-* Fuses
+* Fuses (normal + resettable)

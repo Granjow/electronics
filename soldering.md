@@ -76,7 +76,7 @@ board works quite good; start cutting from one side, then flip it and cut it thr
 ![Cutting Pin Headers](Pictures/cut-pin-headers.jpg)
 
 
-# MOSFETs
+## MOSFETs
 
 Larger MOSFETs have a hole in their heatsink which allows them to be mounted onto an even larger heatsink.
 ON Semi provides a in-depth [manual on soldering MOSFETs][onsemi-mosfet], 
@@ -84,3 +84,8 @@ and Vishay has [guidelines on handling failed MOSFETs][vishay-mosfet].
 
 [onsemi-mosfet]: https://www.onsemi.com/pub/Collateral/SOLDERRM-D.PDF
 [vishay-mosfet]: http://www.vishay.com/docs/71436/an839.pdf
+
+
+## Cleaning PCBs
+
+* [Wie reinigt ihr Platinen?](https://www.mikrocontroller.net/topic/267544)
