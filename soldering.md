@@ -67,6 +67,18 @@ DIP sockets can be soldered next to each other, and ICs can span multiple socket
 have the correct size, combine some sockets and you are fine.
 
 
+## Joining two wires
+
+[NASA lists four different solder splices][nasa-splices] used to join two or more wires reliably:
+
+* Lap splice
+* Hook splice
+* Lash splice
+* Western Union splice; on YouTube: [How To Splice Wires to NASA Standards](https://www.youtube.com/watch?v=O-ymw7d_nYo)
+
+[nasa-splices]: https://web.archive.org/web/20090731171918/http://workmanship.nasa.gov/guidadv_recmeth.jsp
+
+
 ## Pin Headers
 
 Pin headers usually come in rows of 50 pins. They need to be cut properly to avoid breaking off parts at the wrong place.
