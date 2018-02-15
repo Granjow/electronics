@@ -15,6 +15,7 @@ o       o
 * **L** *(brown)* Aussenleiter, Phase
 * **PE** (yellow/green)* Schutzleiter, Protective Earth 
 
+
 ## Wires
 
 Rough numbers
@@ -40,6 +41,13 @@ Copper strand<sup>[1][strombelastbarkeit]</sup>
 
 
 [strombelastbarkeit]: http://www.linzi.hu/Katalogus/2008-2009/ger/X%20028%20%20Strombelastbarkeit%20(allgemein).pdf
+
+
+### Making wires more flexible
+
+Besides choosing a wire which *is* more flexible due to thinner strands or silicone coating, wires can also be
+wrapped around a fabric core. Some examples on [StackExchange: Wire for harsh environment](https://electronics.stackexchange.com/a/164551/135063)
+
 
 ## Switches
 

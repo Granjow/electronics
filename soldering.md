@@ -101,3 +101,10 @@ and Vishay has [guidelines on handling failed MOSFETs][vishay-mosfet].
 ## Cleaning PCBs
 
 * [Wie reinigt ihr Platinen?](https://www.mikrocontroller.net/topic/267544)
+
+
+## Soldering Connectors
+
+### Chinch connectors
+
+* [How to Solder: An Illustrated DIY Guide to Making Your Own Audio Cables](http://www.hometheatershack.com/forums/remotes-cables-accessories-tweaks/13000-how-solder-illustrated-diy-guide-making-your-own-cables.html)
