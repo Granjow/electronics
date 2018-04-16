@@ -2,7 +2,7 @@
 
 ## Plugs
 
-[In Switzerland/EU](https://de.wikipedia.org/wiki/Niederspannungsnetz#Farbgebung)
+[In Switzerland/EU](https://de.wikipedia.org/wiki/Niederspannungsnetz#Farbgebung), old and new colours
 
 ```
 N       L
@@ -11,9 +11,9 @@ o       o
    PE
 ```
 
-* **N** *(blue)* Neutralleiter
-* **L** *(brown)* Aussenleiter, Phase
-* **PE** (yellow/green)* Schutzleiter, Protective Earth 
+* **N** *(blue, yellow)* Neutralleiter
+* **L** *(brown, black)* Aussenleiter, Phase
+* **PE** *(yellow+green, yellow+red)* Schutzleiter, Protective Earth 
 
 
 ## Wires
