@@ -49,6 +49,14 @@ Besides choosing a wire which *is* more flexible due to thinner strands or silic
 wrapped around a fabric core. Some examples on [StackExchange: Wire for harsh environment](https://electronics.stackexchange.com/a/164551/135063)
 
 
+## Wire Ferrules
+
+![Rusted strands](Pictures/power-plug-rust.jpg)
+
+Wire ferrules (*Aderendhülsen* in German) are crimped at the end of stranded wire and prevent oxidation and physical 
+damage (e.g. by screws) to the strands. A bad example where no wire ferrule was used can be seen in the picture. 
+
+
 ## Switches
 
 Single Pole, Double Pole, Single Throw, Double Throw? See [SPST, SPDT, and DPDT Switches Demystified (pdf)][spst]
