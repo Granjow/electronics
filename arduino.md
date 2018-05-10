@@ -1,3 +1,5 @@
+[Arduino reference](https://www.arduino.cc/reference/en/)
+
 ## Arduino Mini Pro
 
 Can be powered with up to 12 V.
@@ -13,4 +15,5 @@ The internal pull-up resistors are [around 20 to 150 kΩ](https://www.arduino.cc
 * 3.3 V version: V<sub>IL</sub> = 0.8 V, V<sub>IH</sub> = 2 V
 * 5 V version: V<sub>IL</sub> = 1.5 V, V<sub>IH</sub> = 3 V
 
+Pinout is on the [product page](https://store.arduino.cc/arduino-pro-mini).
 
