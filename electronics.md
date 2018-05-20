@@ -216,6 +216,7 @@ I<sub>C</sub> −100 mA, V<sub>CE(sat)</sub> −90 to −250 mV
 I<sub>C</sub> −600 mA, V<sub>BE(sat)</sub> −0.6 to −2.6 V, V<sub>CE(sat)</sub> −70 to −1600 mV
 
 
+
 ### MOSFETs
 
 are *voltage controlled*, in contrast to bipolar transistors, which are current controlled. This means that when
@@ -236,17 +237,35 @@ to charge/discharge, but only for a short amount of time.
 The MOSFET gate is sensitive to electrostatical discharge and it is not too hard to break a MOSFET when not handled carefully; 
 transistors are much more robust in this regard.
 
-When power is dissipated in a MOSFET, its temperature rises. The thermal resistance numbers describe junction-to-ambient
-resistance R<sub>θJA</sub> – which depends on the PCB board the MOSFET is mounted on – and sometimes also junction-to-case
-resistance R<sub>θJC</sub>, which describes the package specific thermal resistance. Example values for R<sub>θJA</sub> 
-are 313 °C/W for a 2N700 in a TO-92 package, and 62 °C/W for a IRL3803 in a TO-220AB package. *Thermal resistance* describes
-the amount of heat energy flowing through a structure in time, and gives an indication when cooling is required.
+
+#### Thermal Dissipation
+
+When power is dissipated in a MOSFET, its temperature rises. Thermal resistance describes how much of this thermal power
+is “kept back” in different transitions. In MOSFETs, there are transitions from junction/die to case, to heat sink, to ambient – 
+while ambient usually is still air without ventilation.
+
+Data sheets often provide only a subset of those values. θ<sub>JC</sub> is also written as R<sub>θJC</sub>.
+
+![Thermal Dissipation](Pictures/thermal-dissipation-mosfet.png)
+
+Thermal resistance of junction to case, θ<sub>JC</sub>, and case to sink, θ<sub>CS</sub>, are given by the part’s case.
+The transition to ambient can be changed by attaching the heat sink to a better/larger heat sink with a thermal resistance
+that is below θ<sub>SA</sub>, or by cooling the part with a fan.
+ 
+Example values for θ<sub>JA</sub> are 313 °C/W for a 2N700 in a TO-92 package, and 62 °C/W for a IRL3803 in a TO-220AB package.
+
+
+Power dissipation happens due to 
 
 References:
 
 * [How do I choose my optocoupler to drive a solenoid with a MOSFET?][bjt-vs-mosfet]
 * [P-channel MOSFET][p-channel-mosfet] and power MOSFETs
 * [MOSFET Thermal Characterization in the Application](Datasheets/71619_mosfet-thermal-characterization.pdf) (PDF)
+* [Understanding Thermal Dissipation and Design of a Heatsink](Datasheets/slva462_understanding-thermal-dissipation.pdf)
+
+
+#### Sample MOSFETs
 
 Some TO-92 MOSFETs:
 
@@ -269,7 +288,7 @@ N-Channel.
 V<sub>DSS</sub> 30 V, R<sub>DS(on)</sub> 12 mΩ, I<sub>D</sub> 64 A
 
 **IRL3803**
-[(pdf)](http://www.irf.com/product-info/datasheets/data/irl3803.pdf)
+[(pdf)](Datasheets/irl3803.pdf)
 —
 N-Channel.
 V<sub>DSS</sub> 30 V, R<sub>DS(on)</sub> 6 mΩ, I<sub>D</sub> 140 A
@@ -413,19 +432,23 @@ So, in addition to amplifying a signal, the output voltage can also be at a comp
 The CTR (Current Transmission Ratio) of an optocoupler is defined as I<sub>C</sub>/I<sub>F</sub>. For a CTR of 100 %,
 a forward current of 20 mA through the LED will allow a collector current of 20 mA through the phototransistor.
 
+The LED inside optocopulers decreases over time, and more quickly at high temperatures.
+
 References:
 
 * [How to Use Optocoupler Normalized Curves](Datasheets/Howto-Optocoupler-normalized-curves_83706.pdf)
 
-**PC817** —
+**PC817**
 [(pdf)](Datasheets/PC817C.pdf)
+—
 DIP-4, CTR 50–140 %.
 Max 3 V 50 mA in, 35 V 50 mA 150 mW out. Rise/fall times t<sub>r</sub>, t<sub>f</sub> = 4–18 µs.
 
 Easily available and cheap.
 
-**4N25** —
+**4N25**
 [(pdf)](Datasheets/4n25.pdf)
+—
 DIP-6. CTR 20–50 %. Rise/fall times t<sub>r</sub>, t<sub>f</sub> = 2 µs. 
 The phototransistor base is accessible (must be connected) and can be used e.g. to switch off faster; 
 see [Optocoupler with phototransistor base lead][optocoupler-base-pin].
