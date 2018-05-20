@@ -254,8 +254,16 @@ that is below θ<sub>SA</sub>, or by cooling the part with a fan.
  
 Example values for θ<sub>JA</sub> are 313 °C/W for a 2N700 in a TO-92 package, and 62 °C/W for a IRL3803 in a TO-220AB package.
 
+MOSFETs have a maximum junction temperature T<sub>Jmax</sub>, which is affected by the die quality. Power dissipation has
+to be low enough so that its junction temperature stays below the maximum value. For an IRL3803 with T<sub>Jmax</sub> = 175 °C
+and T<sub>A</sub> = 25 °C, the maximum power dissipation is `150 °C / 62 °C/W = 2.4 W` with ambient cooling, and with an
+appropriate heatsink and a θ<sub>JC</sub> of 0.75 °C/W it is `150 °C / 0.75 °C/W = 200 W`.
 
-Power dissipation happens due to 
+```math
+P_{Dmax} = \frac{T_{Jmax} - T_A}{\Theta_{JA}}
+```
+
+Power dissipation mainly happens due to the on-resistance R<sub>DS(on)</sub>.
 
 References:
 
@@ -263,6 +271,7 @@ References:
 * [P-channel MOSFET][p-channel-mosfet] and power MOSFETs
 * [MOSFET Thermal Characterization in the Application](Datasheets/71619_mosfet-thermal-characterization.pdf) (PDF)
 * [Understanding Thermal Dissipation and Design of a Heatsink](Datasheets/slva462_understanding-thermal-dissipation.pdf)
+* [Thermal Design Basics](http://www.analog.com/media/en/training-seminars/tutorials/MT-093.pdf)
 
 
 #### Sample MOSFETs
