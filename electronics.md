@@ -236,10 +236,17 @@ to charge/discharge, but only for a short amount of time.
 The MOSFET gate is sensitive to electrostatical discharge and it is not too hard to break a MOSFET when not handled carefully; 
 transistors are much more robust in this regard.
 
+When power is dissipated in a MOSFET, its temperature rises. The thermal resistance numbers describe junction-to-ambient
+resistance R<sub>θJA</sub> – which depends on the PCB board the MOSFET is mounted on – and sometimes also junction-to-case
+resistance R<sub>θJC</sub>, which describes the package specific thermal resistance. Example values for R<sub>θJA</sub> 
+are 313 °C/W for a 2N700 in a TO-92 package, and 62 °C/W for a IRL3803 in a TO-220AB package. *Thermal resistance* describes
+the amount of heat energy flowing through a structure in time, and gives an indication when cooling is required.
+
 References:
 
 * [How do I choose my optocoupler to drive a solenoid with a MOSFET?][bjt-vs-mosfet]
 * [P-channel MOSFET][p-channel-mosfet] and power MOSFETs
+* [MOSFET Thermal Characterization in the Application](Datasheets/71619_mosfet-thermal-characterization.pdf) (PDF)
 
 Some TO-92 MOSFETs:
 
