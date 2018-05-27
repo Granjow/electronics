@@ -1,4 +1,4 @@
-[Arduino reference](https://www.arduino.cc/reference/en/)
+Programming: [Arduino reference](https://www.arduino.cc/reference/en/)
 
 ## Arduino Mini Pro
 
@@ -17,3 +17,14 @@ The internal pull-up resistors are [around 20 to 150 kΩ](https://www.arduino.cc
 
 Pinout is on the [product page](https://store.arduino.cc/arduino-pro-mini).
 
+## Serial communication
+
+![Serial communication](Pictures/serial-communication.png)
+
+Additionally to the built-in serial communications on pins 0 and 1 (also on USB connection), Arduino provides the 
+[SoftwareSerial](https://www.arduino.cc/en/Reference/softwareSerial) library
+for software based serial communication. The RX pins must support interrupts.
+
+UART devices typically use a baud rate of 9600. UART, as well as the serial software library, have a built-in RX and TX
+buffer which allows to check if bytes are available for reading – the serial protocol itself does not directly support
+this, as only bytes are exchanged on link level.
