@@ -2,7 +2,7 @@
 
 ## Good to know
 
-Connector numbering: 1, 2, 3 etc. start on the bottom left, counter-clock wise. 
+Connector numbering: 1, 2, 3 etc. start on the bottom left, counter-clock wise.
 The left side is marked, e.g. with a dot.
 ([Thanks, js-boxdrawing](http://marklodato.github.io/js-boxdrawing/))
 
@@ -17,12 +17,12 @@ The following picture shows a DIP-16 IC, a DIP-4 optocoupler, and another one on
 
 ![DIP packages](Pictures/dip-packages.jpg)
 
-**SOP**, SOIC, (T)SO… (small outline …): ICs for surface mounting (SMD) 
+**SOP**, SOIC, (T)SO… (small outline …): ICs for surface mounting (SMD)
 
 ## Terms
 
 * V<sub>CC</sub>, V<sub>DD</sub>: +, V<sub>SS</sub>, V<sub>EE</sub>, GND: −. More information [on Wikipedia](https://en.wikipedia.org/wiki/IC_power-supply_pin)
-* V<sub>F</sub>: Forward Voltage. E.g. voltage drop over diodes, also in optocouplers. 
+* V<sub>F</sub>: Forward Voltage. E.g. voltage drop over diodes, also in optocouplers.
 * V<sub>IK</sub>: Input Clamp Current, V<sub>OK</sub>: Output Clamp Current.
   Current which will destroy the IC if the input voltage is out of range.
   See [StackExchange](https://electronics.stackexchange.com/questions/107687/input-and-output-clamping-current-of-the-ic-4082)
@@ -126,7 +126,7 @@ Different voltage:
 * Mechanical relay
 * Solid-state relay ([Photo MOSFET](https://www.renesas.com/en-in/products/optoelectronics/technology/difference.html))
 
-The optocoupler output can again be amplified with transistors as they usually have a current of I<sub>C</sub> = 20 mA. 
+The optocoupler output can again be amplified with transistors as they usually have a current of I<sub>C</sub> = 20 mA.
 See [Driving High-Level Loads With Optocouplers][vishay-loads].
 
 [vishay-loads]: http://www.soloelectronica.net/PDF/optoacopladores/vishay_driving_high-level_loads_with_optocouplers_83704.pdf
@@ -139,7 +139,7 @@ http://www.resistorguide.com/
 
 ### Transistors
 
-Current can flow from collector to emitter if the base voltage V<sub>B</sub> is *more positive* (NPN) 
+Current can flow from collector to emitter if the base voltage V<sub>B</sub> is *more positive* (NPN)
 or more negative (PNP) than the emitter voltage V<sub>E</sub>.
 
 There is a voltage drop V<sub>BE</sub> which depends on the transistor. The difference between base and emitter
@@ -232,16 +232,16 @@ these are called *power MOSFETs*. N-channel power mosfets have lower resistance 
 
 To efficiently switch MOSFETs at high load, this must be done quickly due to losses during the transition phase.
 This is important especially for power MOSFETs operating at higher frequency. Switching quickly requires *high currents*
-to charge/discharge, but only for a short amount of time. 
+to charge/discharge, but only for a short amount of time.
 
-The MOSFET gate is sensitive to electrostatical discharge and it is not too hard to break a MOSFET when not handled carefully; 
+The MOSFET gate is sensitive to electrostatical discharge and it is not too hard to break a MOSFET when not handled carefully;
 transistors are much more robust in this regard.
 
 
 #### Thermal Dissipation
 
 When power is dissipated in a MOSFET, its temperature rises. Thermal resistance describes how much of this thermal power
-is “kept back” in different transitions. In MOSFETs, there are transitions from junction/die to case, to heat sink, to ambient – 
+is “kept back” in different transitions. In MOSFETs, there are transitions from junction/die to case, to heat sink, to ambient –
 while ambient usually is still air without ventilation.
 
 Data sheets often provide only a subset of those values. θ<sub>JC</sub> is also written as R<sub>θJC</sub>.
@@ -251,7 +251,7 @@ Data sheets often provide only a subset of those values. θ<sub>JC</sub> is also
 Thermal resistance of junction to case, θ<sub>JC</sub>, and case to sink, θ<sub>CS</sub>, are given by the part’s case.
 The transition to ambient can be changed by attaching the heat sink to a better/larger heat sink with a thermal resistance
 that is below θ<sub>SA</sub>, or by cooling the part with a fan.
- 
+
 Example values for θ<sub>JA</sub> are 313 °C/W for a 2N700 in a TO-92 package, and 62 °C/W for a IRL3803 in a TO-220AB package.
 
 MOSFETs have a maximum junction temperature T<sub>Jmax</sub>, which is affected by the die quality. Power dissipation has
@@ -263,9 +263,15 @@ appropriate heatsink and a θ<sub>JC</sub> of 0.75 °C/W it is `150 °C / 0.75 �
 P_{Dmax} = \frac{T_{Jmax} - T_A}{\Theta_{JA}}
 ```
 
-Power dissipation mainly happens due to the on-resistance R<sub>DS(on)</sub>.
+Power dissipation mainly happens due to the on-resistance R<sub>DS(on)</sub> in the continuous case,
+and when switching the MOSFET.
 
-References:
+Maximum current, however, is not only determined by the maximum defined thermal dissipation, but also by
+the maximum continuous drain current I<sub>D</sub> which may be much lower than expected from thermal design.
+The reason is that when the thin wire bonds from die to packing (legs/case) are surrounded by a medium with
+bad thermal conductance, they heat up much faster and burn – see [Continuous MOSFET drain](https://electronics.stackexchange.com/a/137546/135063)
+
+#### References
 
 * [How do I choose my optocoupler to drive a solenoid with a MOSFET?][bjt-vs-mosfet]
 * [P-channel MOSFET][p-channel-mosfet] and power MOSFETs
@@ -281,14 +287,19 @@ Some TO-92 MOSFETs:
 **2N7000**
 [(pdf)](Datasheets/2N7000-short.pdf)
 —
-N-Channel
+N-Channel. I<sub>D</sub> 200 mA
 
 **BS170**
 [(pdf)](Datasheets/BS170-short.pdf)
 —
-N-Channel
+N-Channel. I<sub>D</sub> 500 mA
 
 Larger MOSFETs; note that their legs do not fit into 2.54 mm PCB holes, but they can be soldered on top of PCBs.
+
+**SiHU5N50D**
+[(pdf)](Datasheets/sihu5n50d.pdf)
+—
+N-Channel. V<sub>DSS</sub> 500 V, R<sub>DS(on)</sub> 1.2 Ω, I<sub>D</sub> 5.3 A
 
 **IRL3103**
 [(pdf)](http://www.irf.com/product-info/datasheets/data/irl3103.pdf)
@@ -332,7 +343,7 @@ Normal diodes have a forward voltage V<sub>f</sub> of around 0.7 V, which increa
 Schottky and Germanium diodes have smaller forward voltages around V<sub>f</sub> = 0.3 V.
 
 
-**1N4001** up to **1N4007** 
+**1N4001** up to **1N4007**
 [(pdf)](Datasheets/1n4001.pdf)
 —
 Rectifier diode, 50 to 1000 V, 1 W.
@@ -354,7 +365,7 @@ A voltage of 3.3 V can therefore be maintained by a 3.3 V Zener diode.
 
 ### Varistors
 
-are *variable resistors* whose resistance depends on the voltage. Above a certain voltage (like 30 V or 250 V), 
+are *variable resistors* whose resistance depends on the voltage. Above a certain voltage (like 30 V or 250 V),
 resistance drops and the varistor conducts.
 
 Compared to Zener diodes, varistors are less precise. They are also used for high voltage to e.g. protect against
@@ -402,7 +413,7 @@ It is supported by many devices like ICs, Raspberry, Arduinos, etc.
 [(pdf)](Datasheets/PCF8574.pdf)
 I²C based port expander. Connect SDA (data) and SCL (clock) to the Raspi I²C pins (5 and 7) for 8 additional digital IOs.
 
-Both ICs have 3 address bits/pins, so 8 of them can be used. The P and AP differ only in their 
+Both ICs have 3 address bits/pins, so 8 of them can be used. The P and AP differ only in their
 slave address, so when used together, 16 of them can be attached (resulting in 128 IOs).
 
 The IOs are quasi-bidirectional. An IO is either configured LOW, in which case it functions as open drain (“output”) to GND.
@@ -458,8 +469,8 @@ Easily available and cheap.
 **4N25**
 [(pdf)](Datasheets/4n25.pdf)
 —
-DIP-6. CTR 20–50 %. Rise/fall times t<sub>r</sub>, t<sub>f</sub> = 2 µs. 
-The phototransistor base is accessible (must be connected) and can be used e.g. to switch off faster; 
+DIP-6. CTR 20–50 %. Rise/fall times t<sub>r</sub>, t<sub>f</sub> = 2 µs.
+The phototransistor base is accessible (must be connected) and can be used e.g. to switch off faster;
 see [Optocoupler with phototransistor base lead][optocoupler-base-pin].
 
 **4N35**
@@ -479,7 +490,7 @@ Dual/quad channel optocouplers, DIP-8 and DIP-16.
 ### Op-Amps
 
 are transitor based circuits. An op-amp also amplifies the signal, but with additional benefits like a temperature
-independent, and generally higher, h<sub>fe</sub>. Ideally, they have infinite input inpedance, i.e. they are 
+independent, and generally higher, h<sub>fe</sub>. Ideally, they have infinite input inpedance, i.e. they are
 voltage controlled. In reality, a small *input bias current* I<sub>IB</sub> does flow.
 The NE5532, for example, has an I<sub>IB</sub> of 1 µA.
 
@@ -533,9 +544,9 @@ Also, their response time is a lot shorter; around 40 ns compared to 20 µs for 
 
 ### Dot-Matrix LCD displays
 
-LCD Displays with pixels, also available with backlight. 
+LCD Displays with pixels, also available with backlight.
 
-**HD44780** 
+**HD44780**
 controls dot matrix LCD displays. It requires 6 IOs.
 
 ### 7-Segment LCD/LED displays
@@ -562,7 +573,7 @@ controls 8 elements and uses 2 inputs, clock and data.
 **WS2812B** —
 [(pdf)](Datasheets/28085-WS2812B-RGB-LED-Datasheet.pdf)
 RGB LED with integrated chip (or the other way round), PWM controlled. Usually on LED stripes which can be cut off anywhere.
-LEDs take 60 mA when all 3 colours are on, V<sub>DD</sub> = 5 V. Data (D<sub>IN</sub> and D<sub>OUT</sub> PINs) have 
+LEDs take 60 mA when all 3 colours are on, V<sub>DD</sub> = 5 V. Data (D<sub>IN</sub> and D<sub>OUT</sub> PINs) have
 logic levels 0.3 V<sub>DD</sub> and 0.7 V<sub>DD</sub> and require 1 µA.
 WS2812B is the [improved version of the WS2812](https://acrobotic.com/datasheets/WS2812B_VS_WS2812.pdf).
 
@@ -579,12 +590,12 @@ After the faster SN74HCT08, the signal is reproduced almost identically, but at 
 ![SN74008](Pictures/ws2812-data-after-sn74hct08n.png)
 
 To get it working on a Raspi directly, use [rpi-ws281x-native](https://www.npmjs.com/package/rpi-ws281x-native).
-Level shifting to 5 V is required, otherwise artifacts (wrong pixels) will occur. 
+Level shifting to 5 V is required, otherwise artifacts (wrong pixels) will occur.
 This method is very fast and writes about 24000 LEDs per second on a 60 LED strip (400 fps).
 
-Another solution is to feed colour data from the Raspi to an Arduino. Arduino’s microcontroller then sends data to  WS2812. 
+Another solution is to feed colour data from the Raspi to an Arduino. Arduino’s microcontroller then sends data to  WS2812.
 Use [node-pixel][pixel] and flash the Arduino (I use an Arduino Pro Mini) [with the Backpack firmware][pixel-backpack];
-it then listens on I²C on pins A4 and A5, which may have to be soldered first. 
+it then listens on I²C on pins A4 and A5, which may have to be soldered first.
 On the Raspi, connect to the Arduino with Johnny-Five [and raspi-io][pixel-raspi-io].
 This method is slower with around 740 LEDs per second, which is 12 fps for 60 LEDs.
 
