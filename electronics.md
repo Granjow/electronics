@@ -17,7 +17,8 @@ The following picture shows a DIP-16 IC, a DIP-4 optocoupler, and another one on
 
 ![DIP packages](Pictures/dip-packages.jpg)
 
-**SOP**, SOIC, (T)SO… (small outline …): ICs for surface mounting (SMD)
+**SOP**, SOIC, (T)SO… (small outline …): ICs for surface mounting (SMD). The size of the package is given
+by a code like 1206, which means 0.12×0.06 inch (imperial code), or 5630, which means 5.6×3.0 mm (metric code).
 
 ## Terms
 
