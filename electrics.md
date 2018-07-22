@@ -62,3 +62,10 @@ damage (e.g. by screws) to the strands. A bad example where no wire ferrule was 
 Single Pole, Double Pole, Single Throw, Double Throw? See [SPST, SPDT, and DPDT Switches Demystified (pdf)][spst]
 
 [spst]: http://musicfromouterspace.com/analogsynth_new/ELECTRONICS/pdf/switches_demystified_assembly.pdf 
+
+
+## LED Strips
+
+The maximum LED strip length is limited by the thickness of the copper wires on it as the thin copper layers have
+rather high internal resistance, causing the strip to heat up. To power longer strips, re-supply them e.g. after
+every 5 m.
