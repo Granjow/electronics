@@ -61,50 +61,6 @@ on the current; for the PRFA.025, it is 6 ms at 10 A, and 6 s at 1 A.
 Series of resettable fuses up to 60 V and 100 A.
 
 
-## Connectors + Wires
-
-Connector wires can be bought, but one always ends up making custom ones (different length e.g.). I suggest using
-pliers for crimping, which yields good results with a bit of practice. The original crimping tools usually cost hundreds
-of dollars and are good for professional use.
-
-Connectors should not be soldered. See [Common wire-to-board, wire-to-wire connectors, and crimp tools][crimp-connectors].
-
-References:
-
-* [Connector Basics](https://learn.sparkfun.com/tutorials/connector-basics) at sparkfun
-
-### JST RCY
-
-[Data Sheet](http://www.jst-mfg.com/product/pdf/eng/eRCY.pdf)
-
-The RCY is a wire-to-wire connector, i.e. it is designed for connecting two wires. The plug (male) pins are protected
-by the housing (no accidential short-circuiting something).
-
-The pins on RCYs are numbered; pin 1 is typically used for GND.
-
-### DuPont Mini-PV / Molex SL
-
-The typical black connectors are originally produced by DuPont and called Mini-PV. Nowadays, they are known as
-DuPont connectors and produced by [Molex][molex-catalogue] (SL line) and many others. Originally, they are wire-to-board
-connectors, and a plug (male) version does not exist; only a receptor (female) for jumpers was produced.
-
-Pin headers on PCBs are often connected with Dupont wires. I ended up crimping hundreds of them. This video
-gives a quite good understanding:
-[Custom Cables & Guide to Crimping Dupont PCB Interconnect Cables](https://www.youtube.com/watch?v=GkbOJSvhCgU).
-I am using pliers and no special crimping tools, which works just as well with a bit of practice.
-
-For crimping, the components can be found on ebay:
-
-* *(fe)male dupont crimp pin header*; usually come on a band where they have to be cut off with a side cutter,
-  convenient for storage.
-* *dupont pin housing 1P (2P, 3P, …)*; The pin housing work for both male and female pins, there is no difference.
-  1P denotes housings for a single pin, 2P for two pins, etc. I use 2P most often, then 1P, 4P, and 3P.
-
-
-[molex-catalogue]: http://www.molex.com/catalog/web_catalog/pdfs/C.pdf
-[crimp-connectors]: http://tech.mattmillman.com/info/crimpconnectors/
-
-
 ## Breadboard prototyping
 
 Some nice breadboard hacks are listed in [My Top Ten Most Useful Breadboard Tips and Tricks][breadboard-tips].
