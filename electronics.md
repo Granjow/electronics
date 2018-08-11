@@ -141,6 +141,11 @@ and suit well as switches with a h<sub>fe</sub> of around 1000.
 —
 I<sub>C</sub> 600 mA, V<sub>BE(sat)</sub> 0.75–1.2 V, V<sub>CE(sat)</sub> 400–750 mV
 
+**2N3904**
+[(pdf)](Datasheets/2N3904-short.PDF)
+—
+I<sub>C</sub> 200 mA, V<sub>BE(sat)</sub> 0.65 to 0.95 V, V<sub>CE(sat)</sub> 200–300 mV
+
 **BC337**
 [(pdf)](Datasheets/BC337-D.PDF)
 —
