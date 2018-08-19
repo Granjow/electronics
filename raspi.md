@@ -40,11 +40,11 @@ Pinout of available pins, `~~` are available:
 
 Logic levels are V<sub>IL</sub> = 0.8 V (lower voltages will be recognized as LOW), V<sub>IH</sub> = 1.3 V (higher voltages will be recognized as HIGH).
 
-GPIOs have internal pull-up/pull-down resistors with 1.8 kΩ (probably) which can be enabled individually. 
+GPIOs have internal pull-up/pull-down resistors with 1.8 kΩ (probably) which can be enabled individually.
 As a result from the logic voltage levels, setting a pin with pull-down to HIGH requires a resistor smaller than `1800 Ω · 0.8 V / 2.5 V = 576 Ω` (voltage divider).
 
-For external pull-up/pull-down resistors, [use 10 kΩ](https://www.raspberrypi.org/forums/viewtopic.php?f=44&t=46525#p366259). 
-For setting IOs to LOW/HIGH, use 1 kΩ; this will result in a current of 3.3 mA. 
+For external pull-up/pull-down resistors, [use 10 kΩ](https://www.raspberrypi.org/forums/viewtopic.php?f=44&t=46525#p366259).
+For setting IOs to LOW/HIGH, use 1 kΩ; this will result in a current of 3.3 mA.
 
 **USB** can provide 1200 mA.
 
@@ -88,7 +88,7 @@ Read/write GPIOs. `gpio` works with the WiringPi GPIO numbers!
 
 ### I²C debugging
 
-See also: 
+See also:
 
 * [Raspberry Pi: I2C-Konfiguration und -Programmierung](http://www.netzmafia.de/skripten/hardware/RasPi/RasPi_I2C.html)
 * [Mehr I/O-Ports bereitstellen mit dem PCF8574](http://www.raspberry-pi-geek.de/Magazin/2016/03/Mehr-I-O-Ports-bereitstellen-mit-dem-PCF8574)
@@ -98,10 +98,10 @@ See also:
 ```
 ~> i2cdetect -y 1
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+00:          -- -- -- -- -- -- -- -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 40: -- -- 42 -- -- -- -- -- -- -- -- -- -- -- -- --
 [...]
 
@@ -159,6 +159,10 @@ Enable at boot time: [hdmi_force_hotplug=1](http://raspberrypi.stackexchange.com
 
     hdmi_force_hotplug=1 # Use HDMI mode even if no monitor is connected on startup
     hdmi_drive=2         # Use normal HDMI mode with sound
+
+    # Example shell command to enable HDMI
+    echo "Enabling HDMI always"
+    perl -pi -e 's/#hdmi_force_hotplug=1/hdmi_force_hotplug=1/' /boot/config.txt
 
 Enable HDMI from terminal: [Enable and disable the HDMI port on the Raspberry Pi](https://gist.github.com/AGWA/9874925).
 This is useful e.g. if the resolution on a screen does not fit when plugging it after startup.
@@ -225,7 +229,7 @@ Run CPU benchmark
 The MicroSD card speed can be improved especially on some slow cards by [overclocking the SD reader][overclock].
 Unfortunately, this seems to break wlan.
 
-Current measurements (`dd`: bs=4096. `OC`: Overclocked. `X`: Desktop loaded. `www`: Auto-started Chromium is ready.) 
+Current measurements (`dd`: bs=4096. `OC`: Overclocked. `X`: Desktop loaded. `www`: Auto-started Chromium is ready.)
 
 ```
 dd raspbian   1st run   init 6   i6 after setup      OC        Card
@@ -286,6 +290,19 @@ Enable SSH
 
 Boot overlays e.g. allow to enable I²C, disable audio, etc.
 Documentation, including default values, can be found in `/boot/overlays/README`.
+
+
+## Temperature
+
+The `vcgencmd` tool allows to measure temperature, CPU voltage, etc.
+
+```bash
+vcgencmd measure_temp
+vcgencmd commands
+vcgencmd display_power 0
+```
+
+See also: [vcgencmd usage](https://www.elinux.org/RPI_vcgencmd_usage)
 
 
 ## Build your own Raspbian
