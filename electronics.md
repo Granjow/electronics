@@ -1,6 +1,6 @@
 # Electronics
 
-## Good to know
+## Housings
 
 Connector numbering: 1, 2, 3 etc. start on the bottom left, counter-clock wise.
 The left side is marked, e.g. with a dot.
@@ -184,10 +184,10 @@ I<sub>C</sub> −600 mA, V<sub>BE(sat)</sub> −0.6 to −2.6 V, V<sub>CE(sat)</
 are *voltage controlled*, in contrast to bipolar transistors, which are current controlled. This means that when
 a current flows between drain and source, a MOSFET requires (almost) no current through the gate.
 
-* In N-channel MOSFETs, current flows if V<sub>G</sub> > V<sub>S</sub>.
-* In P-Channel MOSFETs, current flows for V<sub>G</sub> < V<sub>S</sub>.
+* In N-channel MOSFETs, current flows if V<sub>G</sub> > V<sub>S</sub>, load goes to the source.
+* In P-Channel MOSFETs, current flows for V<sub>G</sub> < V<sub>S</sub>, load goes to the drain.
 
-The load goes to the drain.
+![](Pictures/mosfet-n-p.png)
 
 MOSFETs can drive ridiculously high currents (like 140 A) in their packings with heatsink like TO-220, TO-262, etc.;
 these are called *power MOSFETs*. N-channel power mosfets have lower resistance than P-channels.
@@ -249,49 +249,47 @@ Some TO-92 MOSFETs:
 **2N7000**
 [(pdf)](Datasheets/2N7000-short.pdf)
 —
-N-Channel. I<sub>D</sub> 200 mA
+V<sub>DSS</sub> 60 V, R<sub>DS(on)</sub> 1.8 Ω, V<sub>GS(th)</sub> 2.1 V, I<sub>D</sub> 200 mA
 
 **BS170**
 [(pdf)](Datasheets/BS170-short.pdf)
 —
-N-Channel. I<sub>D</sub> 500 mA
+V<sub>DSS</sub> 60 V, R<sub>DS(on)</sub> 1.2 Ω, V<sub>GS(th)</sub> 2.1 V, I<sub>D</sub> 500 mA
 
 Larger MOSFETs; note that their legs do not fit into 2.54 mm PCB holes, but they can be soldered on top of PCBs.
 
 **SiHU5N50D**
 [(pdf)](Datasheets/sihu5n50d.pdf)
 —
-N-Channel. V<sub>DSS</sub> 500 V, R<sub>DS(on)</sub> 1.2 Ω, I<sub>D</sub> 5.3 A
+V<sub>DSS</sub> 500 V, R<sub>DS(on)</sub> 1.2 Ω, V<sub>GS(th)</sub> 3–5 V, I<sub>D</sub> 5.3 A
 
 **IRL3103**
-[(pdf)](http://www.irf.com/product-info/datasheets/data/irl3103.pdf)
+[(pdf)](Datasheets/irl3103.pdf)
 —
-N-Channel.
-V<sub>DSS</sub> 30 V, R<sub>DS(on)</sub> 12 mΩ, I<sub>D</sub> 64 A
+V<sub>DSS</sub> 30 V, R<sub>DS(on)</sub> 12 mΩ, V<sub>GS(th)</sub> 1 V, I<sub>D</sub> 64 A
 
 **IRL3803**
 [(pdf)](Datasheets/irl3803.pdf)
 —
-N-Channel.
-V<sub>DSS</sub> 30 V, R<sub>DS(on)</sub> 6 mΩ, I<sub>D</sub> 140 A
+V<sub>DSS</sub> 30 V, R<sub>DS(on)</sub> 6 mΩ, V<sub>GS(th)</sub> 1 V, I<sub>D</sub> 140 A
 
 **IRF5305**
 [(pdf)](http://www.irf.com/product-info/datasheets/data/irf5305s.pdf)
+*P-Channel*
 —
-P-Channel.
-V<sub>DSS</sub> −55 V, R<sub>DS(on)</sub> 6 mΩ, I<sub>D</sub> −31 A
+V<sub>DSS</sub> −55 V, R<sub>DS(on)</sub> 6 mΩ, V<sub>GS(th)</sub> −2…−4 V, I<sub>D</sub> −31 A
 
 **IRF4905**
 [(pdf)](http://www.irf.com/product-info/datasheets/data/irf4905s.pdf)
+*P-Channel*
 —
-P-Channel.
-V<sub>DSS</sub> −55 V, R<sub>DS(on)</sub> 20 mΩ, I<sub>D</sub> −74 A
+V<sub>DSS</sub> −55 V, R<sub>DS(on)</sub> 20 mΩ, V<sub>GS(th)</sub> −2…−4 V, I<sub>D</sub> −74 A
 
 **IRFU9024**
 [(pdf)](http://www.vishay.com/docs/91278/sihfr902.pdf)
+*P-Channel*
 —
-P-Channel.
-V<sub>DSS</sub> −60 V, R<sub>DS(on)</sub> 280 mΩ, I<sub>D</sub> −8.8 A
+V<sub>DSS</sub> −60 V, R<sub>DS(on)</sub> 280 mΩ, V<sub>GS(th)</sub> −2…−4 V, I<sub>D</sub> −8.8 A
 
 
 [bjt-vs-mosfet]: https://electronics.stackexchange.com/a/43073/135063
