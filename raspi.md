@@ -145,13 +145,19 @@ For MCP23017 in the standard configuration with `IOCON.BANK = 0`:
 
 For higher quality audio, use the [HiFiBerry](https://www.hifiberry.com/).
 
-Play sound at non-max
+Play sound at non-max with `omxplayer` which is generally quite efficient also for playing videos:
 
     omxplayer --vol -5000 file.mp3
 
 Speech synthesis output; use omxplayer for better quality. See [RPi Text to Speech](https://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis))
 
     echo "Hey there" | espeak -ven+f3 -k5 -s150 --stdin -w /tmp/test.wav; omxplayer /tmp/test.wav
+
+Play sound with `mplayer` and change the volume with `amixer`:
+
+    mplayer file.mp3
+    amixer contents           # Get available commands
+    amixer cset numid=1 50%   # Set the volume to 50 %
 
 ## Display
 

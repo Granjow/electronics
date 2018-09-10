@@ -12,7 +12,9 @@ Problems when uploading: [avrdude upload issues][arduino-upload]
 
 ## Arduino Pro Mini
 
-Can be powered with up to 12 V.
+Can be powered with up to 16 V when supplied through the RAW pin, which is connected
+to a [MIC5203](http://ww1.microchip.com/downloads/en/DeviceDoc/mic5203.pdf) voltage regulator
+which converts to 3.3 V (or to 5 V, depending on the board version).
 
 **IO pins** supply up to 40 mA each.
 Input leakage current is [around 1 µA](https://electronics.stackexchange.com/a/67173/135063),

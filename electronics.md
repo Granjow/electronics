@@ -184,8 +184,8 @@ I<sub>C</sub> −600 mA, V<sub>BE(sat)</sub> −0.6 to −2.6 V, V<sub>CE(sat)</
 are *voltage controlled*, in contrast to bipolar transistors, which are current controlled. This means that when
 a current flows between drain and source, a MOSFET requires (almost) no current through the gate.
 
-* In N-channel MOSFETs, current flows if V<sub>G</sub> > V<sub>S</sub>, load goes to the source.
-* In P-Channel MOSFETs, current flows for V<sub>G</sub> < V<sub>S</sub>, load goes to the drain.
+* In N-channel MOSFETs, current flows if V<sub>G</sub> > V<sub>S</sub>, load goes to the drain.
+* In P-Channel MOSFETs, current flows for V<sub>G</sub> < V<sub>S</sub>, load goes to the source.
 
 ![](Pictures/mosfet-n-p.png)
 
