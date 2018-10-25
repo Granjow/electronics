@@ -362,6 +362,17 @@ More reliable is to use separate 5 V for JD-VCC. The relay switches when IN0 is 
 ![Relay Module](Datasheets/5v-relay-module-songle.jpg)
 
 
+### Capacitors
+
+Polarised:
+
+* Tantalum electrolyte: Labels like `476` mean 47·10⁶ pF
+* Aluminum electrolyte
+
+Non-polarised:
+
+* Film capacitor
+
 ## Useful ICs
 
 ### I²C
