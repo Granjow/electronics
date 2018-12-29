@@ -248,14 +248,62 @@ dd raspbian   1st run   init 6   i6 after setup      OC        Card
 39.1 MB/s²    93 s      33 s     56 s X, 71 s www    37s 45s   Kingston UHS-I 16 GB MicroSDHC U3
 14.6 MB/s²    38 s      21 s     23 s X, 33 s www    21s 27s   SanDisk Ultra 16 GB MicroSDHC A1
 19.6 MB/s²    44 s      24 s     24 s X, 35 s www    25s 31s   Samsung Evo+ 32 GB MicroSDHC I
+52.0 MB/s³    48 s      22 s                                   SanDisk Extreme 32 GB MicroSDHC A1
 
 ¹ Raspbian 2016-x
   Written in a Lexar card reader, which I suspect to break MicroSD cards, but writes much faster.
 ² Raspbian 2017-09-07 (4.6 GB)
   Written through normal SD adapter
+³ Custom Raspbian (3.1 GB)
 ```
 
+More performance measurements:
+* [Model 3 B+](https://www.jeffgeerling.com/blog/2018/raspberry-pi-3-b-review-and-performance-comparison)
+* [Micro SD cards](http://www.pidramble.com/wiki/benchmarks/microsd-cards)
+
 [overclock]: http://www.jeffgeerling.com/blog/2016/how-overclock-microsd-card-reader-on-raspberry-pi-3
+
+SanDisk Extreme A1 on a Raspi 3B
+
+```
+	Include fsync in write timing
+	O_DIRECT feature enabled
+	Auto Mode
+	File size set to 102400 kB
+	Record Size 4 kB
+	Command line used: ./iozone -e -I -a -s 100M -r 4k -i 0 -i 1 -i 2 -f /tmp/iozone-testfile
+	Output is in kBytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 1024 kBytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+                                                              random    random     bkwd    record    stride                                    
+              kB  reclen    write  rewrite    read    reread    read     write     read   rewrite      read   fwrite frewrite    fread  freread
+          102400       4     3044     3144     8570     8573     8067     4437                                                                
+
+iozone test complete.
+```
+
+Same on 3B+
+
+```
+	Include fsync in write timing
+	O_DIRECT feature enabled
+	Auto Mode
+	File size set to 102400 kB
+	Record Size 4 kB
+	Command line used: ./iozone -e -I -a -s 100M -r 4k -i 0 -i 1 -i 2 -f /tmp/iozone-testfile
+	Output is in kBytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 1024 kBytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+                                                              random    random     bkwd    record    stride                                    
+              kB  reclen    write  rewrite    read    reread    read     write     read   rewrite      read   fwrite frewrite    fread  freread
+          102400       4     3123     3247     9124     9041     8468     4629                                                                
+
+iozone test complete.
+```
 
 
 ## Network

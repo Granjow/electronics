@@ -25,6 +25,14 @@ like buttons, switches, and plugs which are often threaded and fastened with a n
 
 ![Screw connections](Pictures/screw-connections.png)
 
+**Fuses** are only useful if the correct fuse is inserted. Label the housing
+with the correct fuse rating (e.g. 1 A or 5 A).
+
+**Plugs** which are used frequently tend to break at the soldering connection.
+Filling plugs (e.g. Chinch plugs) with an isolating material like
+[Sugru](http://sugru.com/) improves stability and prevents short-circuits when
+connections finally break.
+
 Links:
 
 * [Detailed Design for Assembly Guidelines](Datasheets/detailed_dfa_design-for-assembly-guidelines.pdf) ([URL][ddag])

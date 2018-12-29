@@ -7,3 +7,4 @@ My notes about electronics.
 * [Electrics](electrics.md) and hardware
 * [Soldering](soldering.md)
 * [Prototyping](prototyping.md) with breadboards
+* [Analysis](analysis.md) of electronical circuits

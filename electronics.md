@@ -81,6 +81,7 @@ Different voltage:
 
 * Optocoupler
 * Mechanical relay
+* MOSFET (N-Channel with common ground)
 * Solid-state relay ([Photo MOSFET](https://www.renesas.com/en-in/products/optoelectronics/technology/difference.html))
 
 The optocoupler output can again be amplified with transistors as they usually have a current of I<sub>C</sub> = 20 mA.
@@ -184,8 +185,11 @@ I<sub>C</sub> −600 mA, V<sub>BE(sat)</sub> −0.6 to −2.6 V, V<sub>CE(sat)</
 are *voltage controlled*, in contrast to bipolar transistors, which are current controlled. This means that when
 a current flows between drain and source, a MOSFET requires (almost) no current through the gate.
 
-* In N-channel MOSFETs, current flows if V<sub>G</sub> > V<sub>S</sub>, load goes to the drain.
-* In P-Channel MOSFETs, current flows for V<sub>G</sub> < V<sub>S</sub>, load goes to the source.
+* In N-channel MOSFETs, current flows if V<sub>G</sub> > V<sub>S</sub>
+* In P-Channel MOSFETs, current flows for V<sub>G</sub> < V<sub>S</sub>
+
+Source is connected to ground (N-Channel) or to Vdd (P-Channel), the load goes to the drain.
+([Typically.](https://oscarliang.com/how-to-use-mosfet-beginner-tutorial/))
 
 ![](Pictures/mosfet-n-p.png)
 
@@ -323,6 +327,20 @@ breakdown voltage U<sub>BR</sub> is well-defined. Above this voltage, the diode 
 A voltage of 3.3 V can therefore be maintained by a 3.3 V Zener diode.
 
 
+### Triacs
+
+* [Triac Tutorial](https://www.electronics-tutorials.ws/power/triac.html)
+* [Dimming 230 V AC with an Arduino](http://alfadex.com/2014/02/dimming-230v-ac-with-arduino-2/)
+
+Triacs allow to switch AC, as they are conductive in both directions in *on* state.
+A Triac stays on as long as current flows through it. It switches off during
+the AC’s zero crossing and can be turned on again at an arbitrary moment,
+but it cannot be turned off while current flows.
+
+They can e.g. be used for phase-fired control (German: Phasenanschnittsteuerung)
+which allows to dim for example incandescent bulbs on 230 V AC.
+
+
 ### Varistors
 
 are *variable resistors* whose resistance depends on the voltage. Above a certain voltage (like 30 V or 250 V),
@@ -366,12 +384,21 @@ More reliable is to use separate 5 V for JD-VCC. The relay switches when IN0 is 
 
 Polarised:
 
-* Tantalum electrolyte: Labels like `476` mean 47·10⁶ pF
+* Tantalum electrolyte: Labels like `476` mean 47·10⁶ pF.
 * Aluminum electrolyte
 
 Non-polarised:
 
 * Film capacitor
+
+Ceramic capacitors are rated by classes which define their temperature stability,
+tolerance, and other values. X5V, X7R etc. are Class 2 capacitors whose capacity
+is generally larger, but changes in a non-linear way with temperature.
+NP0 and others are Class 1 capacitors which have a linear temperature response,
+where the capacity of NP0 does not change at all; they are useful for accurate
+frequency generators.
+See [Ceramic capacitors](https://en.wikipedia.org/wiki/Ceramic_capacitor#Application_classes,_definitions) on Wikipedia.
+
 
 ## Useful ICs
 
@@ -434,7 +461,6 @@ References:
 —
 DIP-4, CTR 50–140 %.
 Max 3 V 50 mA in, 35 V 50 mA 150 mW out. Rise/fall times t<sub>r</sub>, t<sub>f</sub> = 4–18 µs.
-
 Easily available and cheap.
 
 **4N25**
@@ -448,6 +474,11 @@ see [Optocoupler with phototransistor base lead][optocoupler-base-pin].
 [(pdf)](https://www.vishay.com/docs/81181/4n35.pdf)
 —
 Like the 4N25, but with a CTR > 100 %.
+
+**6N137**
+[(pdf)](Datasheets/6N137.pdf)
+—
+DIP-8, 15 mA, t<sub>r</sub> 50 ns
 
 **ILD2**, **ILQ2**
 [(pdf)](http://www.vishay.com/docs/83646/ild1.pdf)
@@ -485,7 +516,13 @@ Comparator; compares two voltages and sets the output low or high, depending on 
 
 ### Counters
 
-**NE555** — Decade counter.
+**NE555**
+[(pdf)](Datasheets/ne555-short.pdf)
+—
+Decade counter. Can generate frequencies from mHz to 100 kHz, which can e.g. be
+used to generate a 38 kHz carrier for IR diodes. Two resistors and one capacitor
+are required for this, with R<sub>B</sub> = (2C)⁻¹ (1.44/f − R<sub>A</sub>C).
+38 kHz can be achieved with R<sub>A</sub> = 1.2 kΩ, R<sub>B</sub> = 12 kΩ, C = 1.5 nF.
 
 **CD4017B** — Decade counter, 10 inputs
 
@@ -502,6 +539,7 @@ Also, their response time is a lot shorter; around 40 ns compared to 20 µs for 
 
 [The 74xx Series](https://www.mikrocontroller.net/articles/74xx) contains many logic chips. Some data sheets:
 * [SN74HCT00 (pdf)](Datasheets/sn74hct00-short.pdf) is a 2-input NAND (25 ns max.; 9 ns max. for AHCT version)
+* [SN74HCT08 (pdf)](Datasheets/sn74hct04-short.pdf) provides 6 NOT inverters (19 ns max.)
 * [SN74HCT08 (pdf)](Datasheets/sn74hct08-short.pdf) is a 2-input AND (30 ns max.; 9 ns max. for AHCT version)
 * [SN74AHC125 (pdf)](Datasheets/sn74ahct125-short.pdf) is a fast 3-state buffer (10 ns max.)
 
@@ -548,8 +586,10 @@ LEDs take 60 mA when all 3 colours are on, V<sub>DD</sub> = 5 V. Data (D<sub>IN<
 logic levels 0.3 V<sub>DD</sub> and 0.7 V<sub>DD</sub> and require 1 µA.
 WS2812B is the [improved version of the WS2812](https://acrobotic.com/datasheets/WS2812B_VS_WS2812.pdf).
 
-Since the signals sent on the data pin are around 400 ns, it is not possible to use optocopulers for shifting a 3.3 V
-signal to 5 V. They have a response time of several 1000 ns. A 74HCT08 can instead be used.
+Since the signals sent on the data pin are around 400 ns, it is not possible to use
+standard optocopulers for shifting a 3.3 V  to 5 V. They have a response time of
+several 1000 ns. A 74HCT08 can instead be used, or a fast optocoupler like the
+6N137 with an output rise time of 50 ns (but requires inverting the signal).
 
 The following image shows the same WS2812B signal directly from the Raspi (blue) and after an optocoupler (red).
 Quite obviously, it is not quite the same curve. The PC817 is too slow to reproduce the signal
