@@ -307,15 +307,14 @@ Normal diodes have a forward voltage V<sub>f</sub> of around 0.7 V, which increa
 Schottky and Germanium diodes have smaller forward voltages around V<sub>f</sub> = 0.3 V.
 
 
-**1N4001** up to **1N4007**
-[(pdf)](Datasheets/1n4001.pdf)
-—
+**1N4001** up to **1N4007** [(pdf)](Datasheets/1n4001.pdf) —
 Rectifier diode, 50 to 1000 V, 1 W.
 Forward voltage (voltage drop) is V<sub>F</sub> = 0.75 V @ 0.1 A and 1.1 V @ 1 A.
 
-**1N5817** to **1N5819**
-[(pdf)](Datasheets/1N5817-D.PDF)
-—
+**1N4148** [(pdf)](Datasheets/1n4148.pdf) —
+V<sub>F</sub> 1 V
+
+**1N5817** to **1N5819** [(pdf)](Datasheets/1N5817-D.PDF) —
 Schottky barrier rectifier diode. V<sub>F</sub> = 0.32 V @ 0.1 A and 0.45 V @ 1 A.
 
 
@@ -340,6 +339,14 @@ but it cannot be turned off while current flows.
 They can e.g. be used for phase-fired control (German: Phasenanschnittsteuerung)
 which allows to dim for example incandescent bulbs on 230 V AC.
 
+**BT136-600** [(pdf)](Datasheets/BT136-600-NXP.pdf) —
+4 A, 600 V
+
+**MOC3021** [(pdf)](Datasheets/OEMOC301XM-MOC302XM_E.pdf) —
+**MOC3052** [(pdf)](Datasheets/MOC3052M_ENG_TDS-short.pdf) —
+Opto-Triac, provides galvanic decoupling and is used to drive larger Triacs.
+
+
 
 ### Varistors
 
@@ -361,8 +368,7 @@ Operating relays requires a certain amount of power. *Relay modules* operate the
 and they often provide galvanic separation between signal and relay power.
 
 **2-channel 5 V Songle Relay Module with Optocoupler**
-[(pdf)](Datasheets/SRD-05VDC-SL-C-Datasheet.pdf)
-—
+[(pdf)](Datasheets/SRD-05VDC-SL-C-Datasheet.pdf) —
 Common 5 V relay module which is often used with Arduinos, Raspis, etc., easily available.
 10 A 250 V, life expectation 10⁵ (el.) / 10⁷ (mech.) operations for 1 op/second.
 
@@ -496,6 +502,10 @@ independent, and generally higher, h<sub>fe</sub>. Ideally, they have infinite i
 voltage controlled. In reality, a small *input bias current* I<sub>IB</sub> does flow.
 The NE5532, for example, has an I<sub>IB</sub> of 1 µA.
 
+Audio OpAmps are specially designed for audio applications, featuring higher
+output current in general to drive loudspeakers, and constant output current
+regardless of the output voltage to avoid distortion.
+
 References:
 
 * [Op Amp Input Bias Current][opamp-bias-current-pdf]
@@ -504,8 +514,29 @@ References:
 **NE5532**
 [(pdf)](http://www.ti.com/lit/ds/symlink/ne5532.pdf)
 
+**LM358** [(pdf)](Datasheets/lm358_lm158-n-short.pdf) –
+20 mA OpAmp, 100 dB
+
+**LM386** [(pdf)](Datasheets/lm386-short.pdf) —
+125 mW Audio OpAmp
+
 [opamp-bias-current-pdf]: http://www.analog.com/media/en/training-seminars/tutorials/MT-038.pdf
 [opamp-bias-current]: http://ecircuitcenter.com/Circuits/op_ibias/op_ibias.htm
+
+
+### H-Bridge
+
+H bridges provide bidirectional high-current output. This is used e.g. for controlling
+stepper and DC motors and relays. DC motors, for example, change their direction
+when switching the polarity of the applied voltage.
+
+Outputs can be set to low or high, so they either source or sink current, and
+they can be disabled, putting them into high impedance state. A motor is stopped
+by putting both outputs to low, and is running freely when the outputs are in
+high impedance (disabled).
+
+**L293D** [(pdf)](Datasheets/l293d.pdf) —
+600 mA 36 V
 
 
 ### Comparators
@@ -543,11 +574,47 @@ Also, their response time is a lot shorter; around 40 ns compared to 20 µs for 
 * [SN74HCT08 (pdf)](Datasheets/sn74hct08-short.pdf) is a 2-input AND (30 ns max.; 9 ns max. for AHCT version)
 * [SN74AHC125 (pdf)](Datasheets/sn74ahct125-short.pdf) is a fast 3-state buffer (10 ns max.)
 
-## Voltage Regulators
 
-**LM3940** —
-[(pdf)](Datasheets/lm3940.pdf) Converts 5 V to 3.3 V. Basically by means of converting electrical to thermal energy.
+### Voltage Regulators
+
+**LM3940** [(pdf)](Datasheets/lm3940.pdf) —
+Converts 5 V to 3.3 V. Basically by means of converting electrical to thermal energy.
 3.3 V, 1 A; U<sub>in</sub> 4.5 to 5.5 V.
+
+
+### LED control
+
+**AL8861** [(pdf)](Datasheets/AL8861-1094677.pdf) —
+Current control for LEDs
+
+
+### RS485
+
+**MAX485** [(pdf)](Datasheets/RS485_MAX1487-MAX491.pdf)
+
+
+### A/D converter
+
+**MCP3204** [(pdf)](Datasheets/MCP3204_MCP3208_MIC.pdf) —
+4/8 channel, 12 bit, SPI
+
+
+### IR receiver
+
+**TSOP4838** [(pdf)](Datasheets/tsop48.pdf) —
+**TSOP31238** [(pdf)](Datasheets/tsop312.pdf) —
+IR receivers for IR signals modulated at 38 kHz (other models of this series are
+available for different frequencies). IR controls modulate the HIGH pulses at
+high frequencies like 38 or 40 kHz to distinguish between natural IR emissions
+like sunlight and IR control pulses. These receivers contain a band-pass filter,
+so all frequencies that lie outside of this band are filtered away.
+
+More information about IR data formats, like NEC and RC 5 codes, in Vishay’s
+[Data Formats for IR Remote Control][dataform]
+[(pdf)](Datasheets/ir-remote-control_dataform.pdf).
+
+[dataform]: http://www.vishay.com/docs/80071/dataform.pdf
+
 
 ## Toys
 
