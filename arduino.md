@@ -40,3 +40,7 @@ for software based serial communication. The RX pins must support interrupts.
 UART devices typically use a baud rate of 9600. UART, as well as the serial software library, have a built-in RX and TX
 buffer which allows to check if bytes are available for reading – the serial protocol itself does not directly support
 this, as only bytes are exchanged on link level.
+
+## Audio mixing
+
+[Low-Latency Audio](https://wiki.linuxaudio.org/wiki/raspberrypi)
