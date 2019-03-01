@@ -348,6 +348,8 @@ A voltage of 3.3 V can therefore be maintained by a 3.3 V Zener diode.
 
 * [Triac Tutorial](https://www.electronics-tutorials.ws/power/triac.html)
 * [Dimming 230 V AC with an Arduino](http://alfadex.com/2014/02/dimming-230v-ac-with-arduino-2/)
+* [Triac Wattage](Datasheets/Triac-Wattage_gate_r.pdf)
+* [Triac Application Note 3003](Datasheets/Triac_AN-3003.pdf)
 
 Triacs allow to switch AC, as they are conductive in both directions in *on* state.
 A Triac stays on as long as current flows through it. It switches off during
