@@ -7,6 +7,7 @@
 * GPIO: [Pinout.xyz](https://pinout.xyz/) provides a nice map of pins
 * SX: [Raspi Power Limitations](https://raspberrypi.stackexchange.com/a/51616/57569)
 * [GPIO Electrical Specifications][gpio-specs] (Not necessarily for Raspi 3, but generally interesting)
+* [rpio freezes](https://github.com/raspberrypi/linux/issues/2550): Add `dtoverlay=gpio-no-irq` to `/boot/config`
 
 The Raspi has 40 GPIO pins. **24 pins** can actually be used for GPIOing.
 

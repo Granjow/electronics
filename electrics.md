@@ -34,6 +34,7 @@ Copper strand<sup>[1][strombelastbarkeit]</sup>
 
      Diameter   Amp  AWG    Usage
      ------------------------------------------------
+               .3 A  32
      0.05 mm²   1 A  30     Thin flat-band connectors
      0.14 mm²   2 A  26     Often used in dupont wires
                      24     Also popular for dupont wires

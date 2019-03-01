@@ -12,13 +12,26 @@ The left side is marked, e.g. with a dot.
     └┬─┬─┬─┬┘
      1 2 3 4
 
-**DIP** (dual in-line package): ICs with pins for 2.54 mm breadboards. DIP-4 has 4 pins, etc.
+**DIP** (dual in-line package): ICs with pins for 2.54 mm breadboards.
+DIP-4 has 4 pins, etc. Pitch is 0.1 inch (sometimes denoted as 0.100 BSC)
+or 2.54 mm.
+
 The following picture shows a DIP-16 IC, a DIP-4 optocoupler, and another one on a DIP-8 socket.
 
 ![DIP packages](Pictures/dip-packages.jpg)
 
-**SOP**, SOIC, (T)SO… (small outline …): ICs for surface mounting (SMD). The size of the package is given
-by a code like 1206, which means 0.12×0.06 inch (imperial code), or 5630, which means 5.6×3.0 mm (metric code).
+**SOP**, SOIC, (T)SO… (small outline …): ICs for surface mounting (SMD).
+Most packages can have different dimensions (e.g. width/height). Pitch is
+the distance from one leg tip to the next one.
+
+* SOIC (Small Outline IC): 1.27 mm pitch
+* SOP (Small Outline Package): 0.65, 0.635 or 0.5 mm pitch
+* TSSOP (Thin Shrink SOP): 0.65 mm pitch
+* MLF (Micro Lead Frame): Square package with 0.5 mm pitch
+
+The package size of SMD components like resistors and capacitors is given by a
+code like 1206, which means 0.12×0.06 inch (imperial code), or 5630, which means
+5.6×3.0 mm (metric code).
 
 ## Terms
 
@@ -135,7 +148,7 @@ so it needs to be looked up for each transistor individually in the data sheet.
 
 There are also transistor arrays in DIP housings, like the ULN2802A [(pdf)](http://www.ti.com/lit/ds/symlink/uln2803a.pdf),
 which have one common emitter (or collector, for PNP). They are in fact darlington transistor arrays (two transistors in series)
-and suit well as switches with a h<sub>fe</sub> of around 1000.
+and suit well as switches with an h<sub>fe</sub> of around 1000.
 
 **2N4401**
 [(pdf)](Datasheets/2N4401-D.PDF)
@@ -396,6 +409,7 @@ Polarised:
 Non-polarised:
 
 * Film capacitor
+* Ceramic capacitor
 
 Ceramic capacitors are rated by classes which define their temperature stability,
 tolerance, and other values. X5V, X7R etc. are Class 2 capacitors whose capacity
@@ -404,6 +418,10 @@ NP0 and others are Class 1 capacitors which have a linear temperature response,
 where the capacity of NP0 does not change at all; they are useful for accurate
 frequency generators.
 See [Ceramic capacitors](https://en.wikipedia.org/wiki/Ceramic_capacitor#Application_classes,_definitions) on Wikipedia.
+Ceramic capacitors also react to vibration due to a piezoelectric effect; watch
+[Which Capacitor Do I Use? Tech Tips Tuesday](https://www.youtube.com/watch?v=67M7fsbLUIU).
+
+Tantalum capacitors react sensitively to voltage spikes above their rating.
 
 
 ## Useful ICs
@@ -461,6 +479,7 @@ The LED inside optocopulers decreases over time, and more quickly at high temper
 References:
 
 * [How to Use Optocoupler Normalized Curves](Datasheets/Howto-Optocoupler-normalized-curves_83706.pdf)
+* [Optocoupler Switching Time Analysis](http://www.cel.com/pdf/appnotes/an3009.pdf)
 
 **PC817**
 [(pdf)](Datasheets/PC817C.pdf)
@@ -474,7 +493,8 @@ Easily available and cheap.
 —
 DIP-6. CTR 20–50 %. Rise/fall times t<sub>r</sub>, t<sub>f</sub> = 2 µs.
 The phototransistor base is accessible (must be connected) and can be used e.g. to switch off faster;
-see [Optocoupler with phototransistor base lead][optocoupler-base-pin].
+see [Optocoupler with phototransistor base lead][optocoupler-base-pin] and
+[Optocoupler Applications][optocoupler-applications].
 
 **4N35**
 [(pdf)](https://www.vishay.com/docs/81181/4n35.pdf)
@@ -494,6 +514,7 @@ Dual/quad channel optocouplers, DIP-8 and DIP-16.
 **617** — More optocouplers
 
 [optocoupler-base-pin]: https://electronics.stackexchange.com/questions/48462/optocoupler-with-phototransistor-base-lead
+[optocoupler-applications]: [Datasheets/designing-for-optocouplers-with-base-pin.pdf]
 
 ### Op-Amps
 
@@ -512,7 +533,7 @@ References:
 * [Op Amp Input Bias Current][opamp-bias-current]
 
 **NE5532**
-[(pdf)](http://www.ti.com/lit/ds/symlink/ne5532.pdf)
+[(pdf)](Datasheets/ne5532-short.pdf)
 
 **LM358** [(pdf)](Datasheets/lm358_lm158-n-short.pdf) –
 20 mA OpAmp, 100 dB
