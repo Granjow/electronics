@@ -48,6 +48,29 @@ Copper strand<sup>[1][strombelastbarkeit]</sup>
 [strombelastbarkeit]: http://www.linzi.hu/Katalogus/2008-2009/ger/X%20028%20%20Strombelastbarkeit%20(allgemein).pdf
 
 
+### Wire Descriptors
+
+Terms like H03VV-F or LiYCY: See
+[Reicheltpedia: Leitungen](https://www.reichelt.de/reicheltpedia/index.php5/Leitungen)
+
+DIN VDE 0250 describes wires by starting from the innermost material.
+LiYCY is a wire with strands in a PVC mantle followed by a copper shield and again
+a PVC mantle.
+
+C = Schirm aus Kupferdrahtgeflecht
+Cu = Kupfer
+e = eindrähtig
+F = feindrähtig, Flachleitung
+I = Verlegung im Putz
+L / Li = Litze
+M = Mantelleitung
+N = Normleitung
+R = Runddraht, Rundleitung
+(St) = statischer Schirm
+Y = PVC, Polyvinylchlorid
+Z = Zwillingsleitung, Zwillingsader
+
+
 ### Making wires more flexible
 
 Besides choosing a wire which *is* more flexible due to thinner strands or silicone coating, wires can also be

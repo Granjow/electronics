@@ -35,7 +35,12 @@ code like 1206, which means 0.12×0.06 inch (imperial code), or 5630, which mean
 
 ## Terms
 
-* V<sub>CC</sub>, V<sub>DD</sub>: +, V<sub>SS</sub>, V<sub>EE</sub>, GND: −. More information [on Wikipedia](https://en.wikipedia.org/wiki/IC_power-supply_pin)
+* Power supply (rail) pins: SS, DD and so on originate from drain/sink (FET)
+  and from base/collector/emitter (BJT).
+  More information [on Wikipedia](https://en.wikipedia.org/wiki/IC_power-supply_pin)
+  * V<sub>CC</sub> and V<sub>DD</sub> and V<sub>BB</sub>: `+` supply voltage
+  * V<sub>SS</sub> and V<sub>EE</sub>: `−` supply voltage
+  * GND: Ground
 * V<sub>F</sub>: Forward Voltage. E.g. voltage drop over diodes, also in optocouplers.
 * V<sub>IK</sub>: Input Clamp Current, V<sub>OK</sub>: Output Clamp Current.
   Current which will destroy the IC if the input voltage is out of range.
@@ -454,7 +459,7 @@ Note that the ¬RST pin needs to be connected to V<sub>DD</sub> unless it needs 
 The MCP23017 ports are divided into the two banks A (ports 0–7) and B (ports 8–15) which are addressed separately.
 Addressing of registers can be changed by setting IOCON.BANK, which defaults to 0 (GPIO addresses are on 0x12 and 0x13).
 
-The [MCP23016](Datasheets/MCP23016_20090C.pdf) is deprecated.
+The [MCP23016](Datasheets/MCP23016_20090C.pdf) is [deprecated](http://www.packom.org/i2c/mcp23016/mcp23017/gpio/2018/09/11/differences-between-mcp23017-and-mcp23018.html).
 
 See also:
 
