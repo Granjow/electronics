@@ -8,6 +8,10 @@ Oscilloscopes measure voltages at a high frequency.
 An example for a digital oscilloscope is the [PicoScope](https://www.picotech.com/)
 which also offers a Linux GUI.
 
+Example of a DMX signal:
+
+![DMX example](Pictures/oscilloscope-dmx-12-channels.png)
+
 ## Logic Analysers
 
 Logic Analysers are powerful for digital signals.

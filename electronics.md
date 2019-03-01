@@ -695,6 +695,10 @@ After the faster SN74HCT08, the signal is reproduced almost identically, but at 
 
 ![SN74008](Pictures/ws2812-data-after-sn74hct08n.png)
 
+6N137 example (red is input):
+
+![6N137](Pictures/6n137-inverted-output.png)
+
 To get it working on a Raspi directly, use [rpi-ws281x-native](https://www.npmjs.com/package/rpi-ws281x-native).
 Level shifting to 5 V is required, otherwise artifacts (wrong pixels) will occur.
 This method is very fast and writes about 24000 LEDs per second on a 60 LED strip (400 fps).
