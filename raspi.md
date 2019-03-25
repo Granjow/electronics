@@ -89,6 +89,13 @@ Read/write GPIOs. `gpio` works with the WiringPi GPIO numbers!
 
 ### I²C debugging
 
+I²C needs to be enabled first:
+
+```bash
+echo "dtparam=i2c_arm=on" >> /boot/config.txt
+echo "i2c-dev" >> /etc/modules
+```
+
 See also:
 
 * [Raspberry Pi: I2C-Konfiguration und -Programmierung](http://www.netzmafia.de/skripten/hardware/RasPi/RasPi_I2C.html)

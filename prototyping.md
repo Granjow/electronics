@@ -37,8 +37,32 @@ Links:
 
 * [Detailed Design for Assembly Guidelines](Datasheets/detailed_dfa_design-for-assembly-guidelines.pdf) ([URL][ddag])
   lists a lot of best practices for design including automation
+* [Top 5 PCB Design Guidelines](https://resources.altium.com/pcb-design-blog/top-pcb-design-guidelines-every-pcb-designer-needs-to-know)
+* [Practical PCB Layout Tips](https://www.allaboutcircuits.com/technical-articles/practical-pcb-layout-tips/)
 
 [ddag]: http://homepages.cae.wisc.edu/~me349/lecture_notes/detailed_dfa.pdf
+
+
+## Through-Hole board design guidelines
+
+**Order** of components
+
+* Input on the left, output on the right
+* Use technical power direction (VCC on top and GND on the bottom) also for connectors
+
+**Component selection**
+
+* Use appropriate terminals: Pin headers with Dupont for thin wires,
+  screw or (preferred) spring terminals for higher currents and AC.
+
+**[Fritzing](http://fritzing.org/)** provides a breadboard designer.
+
+* Make use of GND and VCC symbols in the Schematic view to keep it clean.
+  This also helps to re-order pin assignments on input terminals
+  because only one GND wire has to be changed instead of many.
+
+![Fritzing board example](Pictures/fritzing-board.png)
+
 
 ## Breadboard
 

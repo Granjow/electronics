@@ -17,3 +17,8 @@ Example of a DMX signal:
 Logic Analysers are powerful for digital signals.
 [SigRok](https://sigrok.org/) together with PulseView can use 24 MHz logic analysers
 which can be obtained for less than 10 dollars on Ebay.
+
+The following image shows PulseView examining SPI communication to an
+MCP23S08 port expander.
+
+![MCP23S08 with SPI](Pictures/pulseview-spi-mcp23s08.png)

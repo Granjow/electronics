@@ -36,6 +36,7 @@ Copper strand<sup>[1][strombelastbarkeit]</sup>
      ------------------------------------------------
                .3 A  32
      0.05 mm²   1 A  30     Thin flat-band connectors
+     0.09 mm²        28     Thin *flat ribbon cables* (available up to 22 AWG)
      0.14 mm²   2 A  26     Often used in dupont wires
                      24     Also popular for dupont wires
      0.25 mm²   4 A  23     Single-strand wire that fits into breadboards
