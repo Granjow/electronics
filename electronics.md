@@ -17,6 +17,8 @@ DIP-4 has 4 pins, etc. Pitch is 0.1 inch (sometimes denoted as 0.100 BSC)
 or 2.54 mm.
 
 The following picture shows a DIP-16 IC, a DIP-4 optocoupler, and another one on a DIP-8 socket.
+The sockets have an indent on one side to mark pin 1. This means that the optocopuler
+on the picture is mounted totally incorrectly.
 
 ![DIP packages](Pictures/dip-packages.jpg)
 
@@ -142,6 +144,7 @@ Note how the curve also depends on I<sub>C</sub>.
 
 Further links:
 
+* [Transistor drawings](http://hyperphysics.phy-astr.gsu.edu/hbase/Solids/trans2.html)
 * [Transistor as Switch](http://www.electronicshub.org/transistor-as-switch/), see also the chapter “Example of NPN Transistor as a Switch”
   about inverting an input signal with a transistor.
 * [Bipolar Transistor](http://www.electronics-tutorials.ws/transistor/tran_1.html)
@@ -153,7 +156,9 @@ so it needs to be looked up for each transistor individually in the data sheet.
 
 There are also transistor arrays in DIP housings, like the ULN2802A [(pdf)](http://www.ti.com/lit/ds/symlink/uln2803a.pdf),
 which have one common emitter (or collector, for PNP). They are in fact darlington transistor arrays (two transistors in series)
-and suit well as switches with an h<sub>fe</sub> of around 1000.
+and suit well as switches with a h<sub>fe</sub> of around 1000.
+A disadvantage however is their larger V<sub>CE</sub> saturation voltage due to
+the second transistor.
 
 **2N4401**
 [(pdf)](Datasheets/2N4401-D.PDF)
@@ -202,6 +207,8 @@ I<sub>C</sub> −600 mA, V<sub>BE(sat)</sub> −0.6 to −2.6 V, V<sub>CE(sat)</
 
 are *voltage controlled*, in contrast to bipolar transistors, which are current controlled. This means that when
 a current flows between drain and source, a MOSFET requires (almost) no current through the gate.
+It *also* means that the gate has to be discharged to turn the FET off, see
+[Calculating the pulldown resistance for a given MOSFET’s gate](https://electronics.stackexchange.com/a/66555/135063)
 
 * In N-channel MOSFETs, current flows if V<sub>G</sub> > V<sub>S</sub>
 * In P-Channel MOSFETs, current flows for V<sub>G</sub> < V<sub>S</sub>
@@ -408,7 +415,12 @@ More reliable is to use separate 5 V for JD-VCC. The relay switches when IN0 is 
 
 ### Capacitors
 
-Polarised:
+* [Decoupling capacitors](https://electronics.stackexchange.com/a/90972/135063)
+* [Decoupling Tutorial](http://www.thebox.myzen.co.uk/Tutorial/De-coupling.html)
+
+Capacitors store and release energy quickly. There are two different categories:
+
+Polarised capacitors have a cathode and an anode and break when reversely charged.
 
 * Tantalum electrolyte: Labels like `476` mean 47·10⁶ pF.
 * Aluminum electrolyte
@@ -416,7 +428,13 @@ Polarised:
 Non-polarised:
 
 * Film capacitor
-* Ceramic capacitor
+
+Two frequent decoupling use cases for capacitors:
+
+* Between GND and VCC of a microcontroller to remove high-frequent noise from
+  the power supply. Noise may cause the MC to malfunction in various ways.
+* In circuits which draw PWM loads, like PWM dimmed power LEDs.
+  Without a capacitor, there is PWM noise on the whole supply rail.
 
 Ceramic capacitors are rated by classes which define their temperature stability,
 tolerance, and other values. X5V, X7R etc. are Class 2 capacitors whose capacity
@@ -461,7 +479,14 @@ Note that the ¬RST pin needs to be connected to V<sub>DD</sub> unless it needs 
 The MCP23017 ports are divided into the two banks A (ports 0–7) and B (ports 8–15) which are addressed separately.
 Addressing of registers can be changed by setting IOCON.BANK, which defaults to 0 (GPIO addresses are on 0x12 and 0x13).
 
-The [MCP23016](Datasheets/MCP23016_20090C.pdf) is [deprecated](http://www.packom.org/i2c/mcp23016/mcp23017/gpio/2018/09/11/differences-between-mcp23017-and-mcp23018.html).
+The SPI version MCP23S08 uses mode 0, the address bits are by default deactivated,
+but can be enabled with the IOCON register. To read a byte, first send the
+two normal bytes (opcode and register) and then an additional byte. This byte
+is ignored, but the clock is still running and the byte can be clocked out
+from the device (i.e. the MCP23S08 can send the result while the master sends
+a random byte).
+
+The [MCP23016](Datasheets/MCP23016_20090C.pdf) is deprecated.
 
 See also:
 
