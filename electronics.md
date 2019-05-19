@@ -117,6 +117,9 @@ http://www.resistorguide.com/
 
 ### Transistors
 
+![NPN](Pictures/transistor-npn.png)
+![PNP](Pictures/transistor-pnp.png)
+
 Current can flow from collector to emitter if the base voltage V<sub>B</sub> is *more positive* (NPN)
 or more negative (PNP) than the emitter voltage V<sub>E</sub>.
 
@@ -125,6 +128,11 @@ must in fact be higher than the voltage drop.
 
 A transistor also has a (smaller) voltage drop from collector to emitter, V<sub>CE</sub>, which depends on several variables.
 V<sub>CE</sub> also determines losses. A 2N4001 at 500 mA has a V<sub>CE</sub> = 0.75 V, resulting in 375 mW power dissipation.
+
+Transistors contain two np transitions.
+
+![NPN](Pictures/transistor-npn-alt.png)
+![PNP](Pictures/transistor-pnp-alt.png)
 
 Transistors work in different modes depending on the voltage levels on each inputs.
 
@@ -141,6 +149,10 @@ ON’s data sheet for the 2N4401 contains a nice graph which shows the collector
 Note how the curve also depends on I<sub>C</sub>.
 
 ![Saturation curves](Pictures/transistor-saturation-2N4401.png)
+
+Switching speed of transistors is limited by their turn-on and turn-off time,
+which are calculated as delay time + rise time and storage time + fall time.
+More detailed explanation in  [Transistors](Datasheets/lect10_BJT-Transistors.pdf).
 
 Further links:
 
@@ -670,6 +682,16 @@ More information about IR data formats, like NEC and RC 5 codes, in Vishay’s
 
 
 ## Toys
+
+
+### Stepper Motors
+
+* [Stepper Motor Troubleshooting](https://www.element14.com/community/thread/35078/l/stepper-motor-troubleshooting)
+* [Stepper Motors with Arduino](https://dronebotworkshop.com/stepper-motors-with-arduino/)
+* [Step Motors—Troubleshooting basics, part 1](https://www.designworldonline.com/Step-MotorsTroubleshooting-basics-part-1/) and [Troubleshooting step motors: part 2](https://www.designworldonline.com/troubleshooting-step-motors-part-2/)
+
+Running stepper motors from 0 to full speed is a bad idea as a lot of current
+is drawn in the beginning. Instead, it needs to be ramped up smoothly.
 
 ### Dot-Matrix LCD displays
 

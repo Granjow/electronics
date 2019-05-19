@@ -5,6 +5,7 @@
 
 * [Professionelles Löten von Lochrasterplatinen](http://docplayer.org/5770969-Professionelles-loeten-von-lochrasterplatinen.html)
 * [ON Semiconductor Soldering and Mounting Techniques Reference Manual][solderrm-d]
+* [Common Soldering Problems](https://learn.adafruit.com/adafruit-guide-excellent-soldering/common-problems) in Adafruit’s “Guide to Excellent Soldering”
 
 [solderrm-d]: https://www.onsemi.com/pub/Collateral/SOLDERRM-D.PDF
 

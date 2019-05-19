@@ -51,7 +51,7 @@ For setting IOs to LOW/HIGH, use 1 kΩ; this will result in a current of 3.3 mA.
 
 ### GPIO debugging
 
-Read/write GPIOs. `gpio` works with the WiringPi GPIO numbers!
+Read/write GPIOs. `gpio` works with the `wPi` WiringPi GPIO numbers!
 
 ```
 ~> gpio readall
@@ -168,6 +168,13 @@ Play sound with `mplayer` and change the volume with `amixer`:
     amixer cset numid=1 50%   # Set the volume to 50 %
 
 ## Display
+
+* [Get display settings right](https://www.opentechguides.com/how-to/article/raspberry-pi/28/raspi-display-setting.html)
+
+Dump HDMI settings:
+
+    tvservice -d tvdump
+    edidparser tvdump
 
 Enable at boot time: [hdmi_force_hotplug=1](http://raspberrypi.stackexchange.com/questions/2169/how-do-i-force-the-raspberry-pi-to-turn-on-hdmi)
 

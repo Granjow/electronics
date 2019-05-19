@@ -1,3 +1,5 @@
+# Arduino + ATtiny
+
 Programming: [Arduino reference](https://www.arduino.cc/reference/en/)
 
 When programming an arduino, briefly press the Reset button right when clicking
@@ -10,24 +12,19 @@ Problems when uploading: [avrdude upload issues][arduino-upload]
 
 [arduino-upload]: https://stackoverflow.com/questions/19765037/arduino-sketch-upload-issue-avrdude-stk500-recv-programmer-is-not-respondi
 
-## Arduino Pro Mini
 
-Can be powered with up to 16 V when supplied through the RAW pin, which is connected
-to a [MIC5203](http://ww1.microchip.com/downloads/en/DeviceDoc/mic5203.pdf) voltage regulator
-which converts to 3.3 V (or to 5 V, depending on the board version).
+## Using Arduino as ISP for ATtinys
 
-**IO pins** supply up to 40 mA each.
-Input leakage current is [around 1 µA](https://electronics.stackexchange.com/a/67173/135063),
-see also [this SO answer](https://stackoverflow.com/a/18177902/271961). This, if the internal pull-up resistor is not used.
-The internal pull-up resistors are [around 20 to 150 kΩ](https://www.arduino.cc/en/Tutorial/DigitalPins).
+* [Use Arduino as an ISP programmer to program non-Arduino AVR microcontrollers](https://hardwarefun.com/tutorials/use-arduino-as-an-isp-programmer-to-program-non-arduino-avr-microcontrollers)
 
+Arduino can be used to program e.g. an [ATtiny](https://www.futurlec.com/ICAtmel_ATTiny_Comparison.shtml) model like
+ATtiny85, ATtiny84, etc.
 
-**Logic Levels** – [Logic Levels](https://learn.sparkfun.com/tutorials/logic-levels)
+1. Upload the *ArduinoISP* to an arduino
+2. Wire up the IC (connect SCLK, MISO, MOSI, RESET)
+3. Flash the IC (burn bootloader) with fuse bytes to set the clock speed
+4. Upload code through the ISP Arduino to the IC
 
-* 3.3 V version: V<sub>IL</sub> = 0.8 V, V<sub>IH</sub> = 2 V
-* 5 V version: V<sub>IL</sub> = 1.5 V, V<sub>IH</sub> = 3 V
-
-Pinout is on the [product page](https://store.arduino.cc/arduino-pro-mini).
 
 ## Serial communication
 
@@ -40,6 +37,25 @@ for software based serial communication. The RX pins must support interrupts.
 UART devices typically use a baud rate of 9600. UART, as well as the serial software library, have a built-in RX and TX
 buffer which allows to check if bytes are available for reading – the serial protocol itself does not directly support
 this, as only bytes are exchanged on link level.
+
+## Arduino Pro Mini
+
+Can be powered with up to 16 V when supplied through the RAW pin, which is connected
+to a [MIC5203](http://ww1.microchip.com/downloads/en/DeviceDoc/mic5203.pdf) voltage regulator
+which converts to 3.3 V (or to 5 V, depending on the board version).
+
+**IO pins** supply up to 40 mA each.
+Input leakage current is [around 1 µA](https://electronics.stackexchange.com/a/67173/135063),
+see also [this SO answer](https://stackoverflow.com/a/18177902/271961). This, if the internal pull-up resistor is not used.
+The internal pull-up resistors are [around 20 to 150 kΩ](https://www.arduino.cc/en/Tutorial/DigitalPins).
+
+**Logic Levels** – [Logic Levels](https://learn.sparkfun.com/tutorials/logic-levels)
+
+* 3.3 V version: V<sub>IL</sub> = 0.8 V, V<sub>IH</sub> = 2 V
+* 5 V version: V<sub>IL</sub> = 1.5 V, V<sub>IH</sub> = 3 V
+
+Pinout is on the [product page](https://store.arduino.cc/arduino-pro-mini).
+
 
 ## Audio mixing
 
