@@ -235,6 +235,18 @@ Restart X
 
 [kioskmode]: https://www.danpurdy.co.uk/wp-content/cache/page_enhanced/www.danpurdy.co.uk/web-development/raspberry-pi-kiosk-screen-tutorial/_index.html
 
+
+## Serial
+
+When the serial console is enabled, some GPIO pins function as hardware serial port.
+This serial terminal is available already at boot time.
+Using the serial console, no network connection or screen is necessary.
+
+See [Adafruit’s guide][ada-serial] on the serial terminal.
+
+[ada-serial]: https://cdn-learn.adafruit.com/downloads/pdf/adafruits-raspberry-pi-lesson-5-using-a-console-cable.pdf
+
+
 ## Performance
 
 Get current temperature ([more on vcgencmd](https://www.elinux.org/RPI_vcgencmd_usage))

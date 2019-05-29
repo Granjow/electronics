@@ -18,6 +18,8 @@ o       o
 
 ## Wires
 
+Wire shielding: [Control Systems][shielding], page 26.
+
 Rough numbers
 
     0.75 mm²  15 A
@@ -47,6 +49,7 @@ Copper strand<sup>[1][strombelastbarkeit]</sup>
 
 
 [strombelastbarkeit]: http://www.linzi.hu/Katalogus/2008-2009/ger/X%20028%20%20Strombelastbarkeit%20(allgemein).pdf
+[shielding]: https://support.automationdirect.com/docs/controlsystemdesign.pdf
 
 
 ### Wire Descriptors
