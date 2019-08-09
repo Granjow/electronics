@@ -29,3 +29,8 @@ See [Encoder Whitepaper][encoder-whitepaper] (PDF) by Automation Direct.
 [Angle Encoders: How to Measure Angle Using Encoders](https://www.dynapar.com/Knowledge/Applications/Angle_Encoders/)
 
 [encoder-whitepaper]: https://cdn.automationdirect.com/static/press/encoder-white-paper.pdf
+
+
+## Tolerances
+
+[Tolerances PDF](https://de.misumi-ec.com/pdf/fa/2014/P1_2287-2288_F80_DE.pdf)

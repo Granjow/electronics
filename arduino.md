@@ -1,3 +1,11 @@
+# Microcontrollers
+
+Search “microcontroller common ground disturbances”
+
+* [What could cause a microcontroller to unexpectedly reset?](https://electronics.stackexchange.com/a/81253/135063)
+* [Grounding microcontrollers](https://electronics.stackexchange.com/a/286668/135063)
+* [Noise Reduction Techniquesfor Microcontroller-Based Systems](https://www.nxp.com/docs/en/application-note/AN1705.pdf)
+
 # Arduino + ATtiny
 
 Programming: [Arduino reference](https://www.arduino.cc/reference/en/)

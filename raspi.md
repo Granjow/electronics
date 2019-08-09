@@ -173,13 +173,20 @@ Play sound with `mplayer` and change the volume with `amixer`:
 
 Dump HDMI settings:
 
+    tvservice -s
     tvservice -d tvdump
     edidparser tvdump
 
 Enable at boot time: [hdmi_force_hotplug=1](http://raspberrypi.stackexchange.com/questions/2169/how-do-i-force-the-raspberry-pi-to-turn-on-hdmi)
 
-    hdmi_force_hotplug=1 # Use HDMI mode even if no monitor is connected on startup
-    hdmi_drive=2         # Use normal HDMI mode with sound
+    # Use HDMI mode even if no monitor is connected on
+    hdmi_force_hotplug=1 startup
+
+    # Use normal HDMI mode with sound
+    hdmi_drive=2
+
+    # Force audio over HDMI
+    hdmi_force_edid_audio=1
 
     # Example shell command to enable HDMI
     echo "Enabling HDMI always"
@@ -361,6 +368,15 @@ More information in the [Raspi docs](https://www.raspberrypi.org/documentation/c
     wpa_cli -i wlan0 reconfigure
     ifconfig wlan0
     ping -I wlan0 google.com # Use wlan0 for ping. See ifmetric settings above.
+
+Static IP address definition via interface:
+See `man interfaces` and edit `/etc/network/interfaces`:
+
+    iface eth0 inet static address 192.168.1.23
+
+Static IP via DHCP configuration: Edit `/etc/dhcpcd.conf` and add
+
+    static ip_address 192.168.1.23
 
 Enable SSH
 

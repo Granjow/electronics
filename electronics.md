@@ -363,12 +363,14 @@ breakdown voltage U<sub>BR</sub> is well-defined. Above this voltage, the diode 
 A voltage of 3.3 V can therefore be maintained by a 3.3 V Zener diode.
 
 
-### Triacs
+### TRIACs
 
 * [Triac Tutorial](https://www.electronics-tutorials.ws/power/triac.html)
 * [Dimming 230 V AC with an Arduino](http://alfadex.com/2014/02/dimming-230v-ac-with-arduino-2/)
 * [Triac Wattage](Datasheets/Triac-Wattage_gate_r.pdf)
 * [Triac Application Note 3003](Datasheets/Triac_AN-3003.pdf)
+* [RC Snubber Networks For Thyristor Power Control and Transient Suppression](https://www.onsemi.com/pub/Collateral/AN1048-D.PDF)
+* [Thyristors and Triacs — Ten Golden Rules for Success in Your Application](http://www.chtechnology.com/pdf/AN-08-06%20SCR%20Application%20Notes.pdf)
 
 Triacs allow to switch AC, as they are conductive in both directions in *on* state.
 A Triac stays on as long as current flows through it. It switches off during
@@ -427,6 +429,7 @@ More reliable is to use separate 5 V for JD-VCC. The relay switches when IN0 is 
 
 ### Capacitors
 
+* [Capacitor Guide](http://www.capacitorguide.com/)
 * [Decoupling capacitors](https://electronics.stackexchange.com/a/90972/135063)
 * [Decoupling Tutorial](http://www.thebox.myzen.co.uk/Tutorial/De-coupling.html)
 
@@ -458,7 +461,13 @@ See [Ceramic capacitors](https://en.wikipedia.org/wiki/Ceramic_capacitor#Applica
 Ceramic capacitors also react to vibration due to a piezoelectric effect; watch
 [Which Capacitor Do I Use? Tech Tips Tuesday](https://www.youtube.com/watch?v=67M7fsbLUIU).
 
-Tantalum capacitors react sensitively to voltage spikes above their rating.
+[Tantalum capacitors](http://www.capacitorguide.com/tantalum-capacitor/)
+react sensitively to voltage spikes above their rating
+and may go into thermal runaway aka. smoke and flames.
+
+[Film capacitors](http://www.capacitorguide.com/film-capacitor/) are bulkier
+than other capacitors, but they are stable over time – their capacity
+does not change much – and [self-healing](https://en.wikipedia.org/wiki/Film_capacitor#Self-healing_of_metallized_film_capacitors).
 
 
 ## Useful ICs
