@@ -374,7 +374,8 @@ See `man interfaces` and edit `/etc/network/interfaces`:
 
     iface eth0 inet static address 192.168.1.23
 
-Static IP via DHCP configuration: Edit `/etc/dhcpcd.conf` and add
+Static IP via DHCP configuration: Edit `/etc/dhcpcd.conf`.
+This file also supports a static IP as fallback in case DHCP is not available.
 
     static ip_address 192.168.1.23
 

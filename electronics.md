@@ -152,7 +152,12 @@ Note how the curve also depends on I<sub>C</sub>.
 
 Switching speed of transistors is limited by their turn-on and turn-off time,
 which are calculated as delay time + rise time and storage time + fall time.
-More detailed explanation in  [Transistors](Datasheets/lect10_BJT-Transistors.pdf).
+Delay time and storage time can be large and can make a transistor unusable
+for fast signals and can be reduced with a Baker clamp.
+
+More detailed explanation in [Transistors (PDF)](Datasheets/lect10_BJT-Transistors.pdf).
+
+![BJT Rise and fall time](Pictures/bjt-tON-tOFF.png)
 
 Further links:
 
@@ -239,6 +244,10 @@ to charge/discharge, but only for a short amount of time.
 
 The MOSFET gate is sensitive to electrostatical discharge and it is not too hard to break a MOSFET when not handled carefully;
 transistors are much more robust in this regard.
+
+When [choosing a MOSFET](https://www.youtube.com/watch?v=GrvvkYTW_0k), it is important
+to check that its threshold gate-source voltage V<sub>GS(th)</sub> is lower than
+the input signal which is used to turn it on (e.g. 3.3 V for a Raspberry Pi).
 
 
 #### Thermal Dissipation
@@ -379,6 +388,8 @@ but it cannot be turned off while current flows.
 
 They can e.g. be used for phase-fired control (German: Phasenanschnittsteuerung)
 which allows to dim for example incandescent bulbs on 230 V AC.
+
+Hi-com TRIACs are especially suited for switching purposes like AC dimmers.
 
 **BT136-600** [(pdf)](Datasheets/BT136-600-NXP.pdf) —
 4 A, 600 V
