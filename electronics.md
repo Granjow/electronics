@@ -117,6 +117,27 @@ http://www.resistorguide.com/
 
 ### Transistors
 
+[Transistor as switch](https://www.baldengineer.com/low-side-vs-high-side-transistor-switch.html)
+
+When BJTs and MOSFETs are used as switches, they can be used as *high side*
+(P-channel and PNP) or as *low side* (N-channel and NPN) switches.
+
+*Low Side* means the transistor is connected to ground, which is often easier to
+control as only the saturation voltage is needed to turn it on fully. However,
+if it is used to power on a device which relies on a correct GND level like a
+microcontroller, a high side switch should be used due to the voltage drop over
+the transistor to ground.
+
+*High Side* means the transistor is connected to the supply voltage.
+
+If the V<sub>gs</sub> voltage of a transistor is too high for the input signal,
+a transistor driver is required.
+
+![Transistor driver for higher voltage](Pictures/transistor-driver.png)
+
+
+### Bipolar transistors (BJTs)
+
 ![NPN](Pictures/transistor-npn.png)
 ![PNP](Pictures/transistor-pnp.png)
 
