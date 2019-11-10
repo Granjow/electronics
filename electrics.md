@@ -1,5 +1,18 @@
 # Electrics and hardware parts
 
+## AC Power
+
+![3-phase AC power from generator](Pictures/three-phase-ac-generator.png)
+
+3-phase electric power is created by the generator. The phases are shifted by 120° each.
+
+![3-phase AC power, usage](Pictures/three-phase-ac-voltages.png)
+
+In the star/Y configuration, the coils are connected at the neutral point (N)
+and the neutral line. Each phase provides 230 V AC relative to N, or 400 V
+relative to each other.
+
+
 ## Plugs
 
 [In Switzerland/EU](https://de.wikipedia.org/wiki/Niederspannungsnetz#Farbgebung), old and new colours
@@ -11,9 +24,9 @@ o       o
    PE
 ```
 
-* **N** *(blue, yellow)* Neutralleiter
-* **L** *(brown, black)* Aussenleiter, Phase
-* **PE** *(yellow+green, yellow+red)* Schutzleiter, Protective Earth
+* **N** *(blue, old: yellow)* Neutralleiter
+* **L** *(brown, old: black)* Aussenleiter, Phase
+* **PE** *(yellow+green, old: yellow+red)* Schutzleiter, Protective Earth
 
 
 ## Wires
@@ -169,4 +182,4 @@ Tools can be available for different purposes:
   they *must not* be used on systems which are powered on.
 * Insulated tools (VDE in German) *can* be used to work on live systems with a voltage of e.g.
   up to 1000 V.
-* Normal tools are usually neither ESD conductive nor guarantee any voltage protection.
+* Normal tools are usually neither ESD conductive nor do they guarantee any voltage protection.
