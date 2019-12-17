@@ -1,6 +1,9 @@
 # Communication Protocols
 
+
 ## SPI
+
+* [Long-distance SPI](http://www.ti.com/lit/an/slyt441/slyt441.pdf)
 
 Bidirectional.
 
@@ -34,3 +37,9 @@ MAX485
 
 * [DMX512-A](https://opendmx.net/index.php/DMX512-A)
 * [HiFiBerry DAC+ Pro XLR konfigurieren](https://www.hifiberry.com/build/documentation/configuring-linux-3-18-x/)
+
+
+## RS485
+
+https://www.lammertbies.nl/comm/info/rs-485
+

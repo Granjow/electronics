@@ -432,6 +432,8 @@ lightning strikes where high voltages occur for a very short time.
 
 ## Relays
 
+* [Relay Contact Life](Datasheets/RelayContactLife-ENG_CS_13C3236_AppNote_0513.pdf) and materials used in relays
+
 Relays switch a contact by magnetic force, allowing a small voltage to control e.g. 220 V.
 
 Since relays are mechanical switches, their switching speed is limited to e.g. 10 per second, and they also have

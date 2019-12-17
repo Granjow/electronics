@@ -21,6 +21,38 @@ Problems when uploading: [avrdude upload issues][arduino-upload]
 [arduino-upload]: https://stackoverflow.com/questions/19765037/arduino-sketch-upload-issue-avrdude-stk500-recv-programmer-is-not-respondi
 
 
+## IDE configuration
+
+In the settings:
+
+* Enable *Show verbose output during compilation and upload*
+* Set *Compiler warnings* to *All*
+
+
+## Reading PWM signals
+
+* [3 ways to read PWM][3w-pwm]
+
+To read PWM signals: Attach an interrupt to an interrupt pin (advanced mode: to
+an interrupt bank) and store `micros()` in a volatile variable.
+
+[3w-pwm]: http://www.benripley.com/diy/arduino/three-ways-to-read-a-pwm-signal-with-arduino/
+
+
+## Handling millis() overflow
+
+See [Gammon: millis() overflow ... a bad thing?](https://www.gammon.com.au/millis)
+
+Summary: Subtract timestamps, unsigned numbers handle the rest.
+
+```c
+unsigned long startTime = millis();
+unsigned long interval = 60000;
+
+bool intervalPassed = millis() - startTime >= interval;
+```
+
+
 ## Using Arduino as ISP for ATtinys
 
 * [Use Arduino as an ISP programmer to program non-Arduino AVR microcontrollers](https://hardwarefun.com/tutorials/use-arduino-as-an-isp-programmer-to-program-non-arduino-avr-microcontrollers)

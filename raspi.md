@@ -379,10 +379,15 @@ This file also supports a static IP as fallback in case DHCP is not available.
 
     static ip_address 192.168.1.23
 
-Enable SSH
+Enable SSH on a running system
 
     systemctl enable ssh
     systemctl start ssh
+
+Enable SSH with MicroSD access only: Create `/boot/ssh`. Raspbian will enable
+SSH and delete the file upon the next boot process.
+
+    touch /boot/ssh
 
 ## Boot Overlays
 
@@ -403,9 +408,38 @@ vcgencmd display_power 0
 See also: [vcgencmd usage](https://www.elinux.org/RPI_vcgencmd_usage)
 
 
-## Build your own Raspbian
+## Raspbian
+
+
+### Build your own Raspbian
 
 Use [pi-gen](https://github.com/RPi-Distro/pi-gen) and customise the stages. Drop stages 4 and 5 if Python
 and Mathematica are not required; results in a < 500 MB large ISO (takes 40 minutes on a laptop with 10 Mb/s download).
 
 The builder runs on a docker image, so all required tools are installed in a separate environment.
+
+
+### Varia
+
+Remove password warning on login screen:
+
+* For older Raspbian versions: [Delete the shell files](https://raspberrypisig.com/blog/raspbian/2019/02/26/disable-ssh-warning/)
+  * `/etc/profile.d/sshpasswd.sh`
+  * `/etc/xdg/lxsession/LXDE-pi/sshpwd.sh`
+  * `~/.config/lxsession/LXDE-pi/sshpasswd.sh`
+* For newer Raspbian versions: `apt purge libpam-chksshpwd`
+
+
+### Configure autostart applications
+
+Edit `~/.config/lxsession/LXDE-pi/autostart`. See [config file
+reference][lx-auto] for more details about writing this configuration file.
+Important points:
+
+* To add comments, the *first character on the line* must be a `#`
+* Other lines are commands. If they start with `@`, it is restarted after crash.
+
+
+[lx-auto]: https://wiki.lxde.org/en/LXSession#autostart_configuration_file
+
+
