@@ -68,6 +68,8 @@ ATtiny85, ATtiny84, etc.
 
 ## Serial communication
 
+* [Serial Input Basics](https://forum.arduino.cc/index.php?topic=396450)
+
 ![Serial communication](Pictures/serial-communication.png)
 
 Additionally to the built-in serial communications on pins 0 and 1 (also on USB connection), Arduino provides the
