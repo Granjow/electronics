@@ -284,6 +284,10 @@ dd raspbian   1st run   init 6   i6 after setup      OC        Card
 19.6 MB/s²    44 s      24 s     24 s X, 35 s www    25s 31s   Samsung Evo+ 32 GB MicroSDHC I
 52.0 MB/s³    48 s      22 s                                   SanDisk Extreme 32 GB MicroSDHC A1
 
+26.6 MB/s³    53 s      26 s                                   Samsung EvoPlus 32 GB UHS-1 FHD
+43.0 MB/s³    53 s      26 s                                   SanDisk Extreme 32 GB A1
+21.7 MB/s³    55 s      23 s                                   SanDisk Ultra UHS-1
+
 ¹ Raspbian 2016-x
   Written in a Lexar card reader, which I suspect to break MicroSD cards, but writes much faster.
 ² Raspbian 2017-09-07 (4.6 GB)
@@ -292,6 +296,7 @@ dd raspbian   1st run   init 6   i6 after setup      OC        Card
 ```
 
 More performance measurements:
+
 * [Model 3 B+](https://www.jeffgeerling.com/blog/2018/raspberry-pi-3-b-review-and-performance-comparison)
 * [Micro SD cards](http://www.pidramble.com/wiki/benchmarks/microsd-cards)
 
