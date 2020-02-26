@@ -374,15 +374,32 @@ More information in the [Raspi docs](https://www.raspberrypi.org/documentation/c
     ifconfig wlan0
     ping -I wlan0 google.com # Use wlan0 for ping. See ifmetric settings above.
 
-Static IP address definition via interface:
-See `man interfaces` and edit `/etc/network/interfaces`:
+
+
+### Static IP address
+
+A static IP can be configured in `dhcpcd` or directly in the network
+interfaces. Configuring it in dhcpcd allows more options like fall-back from
+DHCP to a static IP.
+
+**dhcpcd** configuration is stored in `/etc/dhcpcd.conf`. This file also
+supports a static IP as fallback in case DHCP is not available.
+
+```
+interface eth0
+static ip_address=192.168.1.23
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1 8.8.8.8
+```
+
+
+**Interfaces** are configured in `/etc/network/interfaces`. For more details,
+see `man interfaces`. To configure a static IP address definition:
 
     iface eth0 inet static address 192.168.1.23
 
-Static IP via DHCP configuration: Edit `/etc/dhcpcd.conf`.
-This file also supports a static IP as fallback in case DHCP is not available.
 
-    static ip_address 192.168.1.23
+### SSH access
 
 Enable SSH on a running system
 
@@ -393,6 +410,7 @@ Enable SSH with MicroSD access only: Create `/boot/ssh`. Raspbian will enable
 SSH and delete the file upon the next boot process.
 
     touch /boot/ssh
+
 
 ## Boot Overlays
 
